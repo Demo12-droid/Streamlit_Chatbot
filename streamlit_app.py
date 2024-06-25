@@ -9,7 +9,7 @@ import pandas as pd
 
 # Function to get a response from the Django backend
 def get_response(user_input,show_plot):
-    url = 'http://square-martin-obliging.ngrok-free.app/chat/chatbot/'
+    url = 'http://molly-grateful-hippo.ngrok-free.app/chat/chatbot/'
     headers = {'Content-Type': 'application/json'}
     payload = {
         'username': 'example_user',
@@ -26,20 +26,6 @@ def get_response(user_input,show_plot):
         return data.get('sql', 'No SQL query generated'), data.get('df', 'No data frame generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated')
     else:
         return None, None, None, None
-    # username = 'example_user'
-    # mode = 'ASK'
-    # question = user_input
-    # table_key = 'congestion'
-
-    # result = run_code(question, table_key, username, mode)
-
-    # # Check if run_code returned None
-    # if result is None:
-    #     return None, None, None, None
-
-    # sql, df, text_summary, plot = result
-
-    # return sql, df, text_summary, plot
     
 def display_plot(plot_base64):
     if plot_base64:
