@@ -15,7 +15,7 @@ def get_response(user_input,show_plot):
         'username': 'example_user',
         'mode': 'ASK',
         'question': user_input,
-        'table_key': 'congestion',
+        'table_key': 'toll_plaza_data',
         'show_plot': show_plot,
     }
     
