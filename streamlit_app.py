@@ -59,11 +59,14 @@ with st.form(key='chat_form'):
 
     with input_col:
         user_input = st.text_input("You:", key='user_input')
+    button_b_pos = "1rem"
+    button_css = float_css_helper( bottom=button_b_pos, transition=0.2)
+    float_parent(css=button_css)
     with button_col:
         submit_button = st.form_submit_button(label='Send')
     #user_input = st.text_input("You: ", key='user_input')
     #submit_button = st.form_submit_button(label='Send')
-    button_b_pos = "0.5rem"
+    button_b_pos = "1rem"
     button_css = float_css_helper( bottom=button_b_pos, transition=0.2)
     float_parent(css=button_css)
 
