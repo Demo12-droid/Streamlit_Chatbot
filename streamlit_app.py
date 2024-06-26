@@ -65,7 +65,7 @@ if submit_button and user_input:
         "time_taken": time_taken 
     })
     
-    time_taken_display.write(f"Time taken: {time_taken:.4f} seconds")  # Display time taken here
+    time_taken_display.text(f"Time taken: {time_taken:.4f} seconds")
 
 for entry in st.session_state.conversation:
     st.markdown(f"<b style='color:blue;'>You:</b> {entry['user_input']}", unsafe_allow_html=True)
