@@ -28,7 +28,7 @@ def get_response(user_input,show_plot,toggle_option):
 
     MESSAGE=RESPONSE
     start_time = time.time()
-    response = requests.post(url, headers=headers, data=json.dumps(payload))
+    #response = requests.post(url, headers=headers, data=json.dumps(payload))
     end_time = time.time()
 
     time_taken = end_time - start_time  # Calculate time taken
