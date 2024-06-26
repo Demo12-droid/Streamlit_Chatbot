@@ -38,7 +38,10 @@ def get_response(user_input,show_plot,toggle_option):
     #    return data.get('sql', 'No SQL query generated'), data.get('df', 'No data frame generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),time_taken
     #else:
     #    return None, None, None, None, None
-    return MESSAGE
+    return MESSAGE,MESSAGE,MESSAGE,MESSAGE,MESSAGE
+
+
+
 def display_plot(plot_base64):
     if plot_base64:
         plot_data = base64.b64decode(plot_base64)
