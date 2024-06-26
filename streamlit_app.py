@@ -26,7 +26,7 @@ def get_response(user_input,show_plot,toggle_option):
         'show_plot': show_plot,
     }
 
-    MESSAGE=RESPONSE
+    MESSAGE="RESPONSE"
     start_time = time.time()
     #response = requests.post(url, headers=headers, data=json.dumps(payload))
     end_time = time.time()
