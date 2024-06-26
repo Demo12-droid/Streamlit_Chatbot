@@ -86,9 +86,9 @@ for entry in st.session_state.conversation:
         st.write(f"SQL Query:\n {entry['sql']}")
     if entry['df']:
         st.write("Data Frame:")
-        st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
+        #st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
     if entry['text_summary']:
         st.write(f"Summary:\n{entry['text_summary']}")
     if entry['plot']:
         st.write("Plot:")
-        display_plot(entry['plot'])  # Display the plot
+        #display_plot(entry['plot'])  # Display the plot
