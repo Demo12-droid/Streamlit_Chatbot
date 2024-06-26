@@ -53,22 +53,25 @@ st.title("Chatbot")
 
 if 'conversation' not in st.session_state:
     st.session_state['conversation'] = []
+import streamlit as st
 
+# Set up the form container
 with st.form(key='chat_form'):
-    input_col, button_col = st.columns([4, 1])  # Adjust column widths as needed
+    # Create columns to hold input and button
+    input_col, button_col = st.columns([4, 1]) 
 
+    # Inside input column, place the text input field
     with input_col:
         user_input = st.text_input("You:", key='user_input')
-    button_b_pos = "1rem"
-    button_css = float_css_helper( bottom=button_b_pos, transition=0.2)
-    float_parent(css=button_css)
+
+    # Inside button column, place the submit button
     with button_col:
         submit_button = st.form_submit_button(label='Send')
-    #user_input = st.text_input("You: ", key='user_input')
-    #submit_button = st.form_submit_button(label='Send')
-    button_b_pos = "1rem"
-    button_css = float_css_helper( bottom=button_b_pos, transition=0.2)
+
+    button_b_pos = "1.5rem" 
+    button_css = float_css_helper(bottom=button_b_pos, transition=0.2)
     float_parent(css=button_css)
+
 
 toggle_option = st.radio("Select a database:", ('congestion', 'toll_plaza_data'))
 show_plot = st.checkbox("Plot", value=True)
