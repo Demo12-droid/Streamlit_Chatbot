@@ -68,7 +68,7 @@ with st.form(key='chat_form'):
     with button_col:
         submit_button = st.form_submit_button(label='Send')
 
-    button_b_pos = "1.5rem" 
+    button_b_pos = "25rem" 
     button_css = float_css_helper(bottom=button_b_pos, transition=0.2)
     float_parent(css=button_css)
 
