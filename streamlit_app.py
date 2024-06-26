@@ -16,7 +16,7 @@ def get_response(user_input,show_plot,toggle_option):
         'username': 'example_user',
         'mode': 'ASK',
         'question': user_input,
-        'table_key': 'toggle_option',
+        'table_key': toggle_option,
         'show_plot': show_plot,
     }
 
