@@ -51,8 +51,6 @@ with st.form(key='chat_form'):
 toggle_option = st.radio("Select a database:", ('congestion', 'toll_plaza_data'))
 show_plot = st.checkbox("Plot", value=True)
 
-print(f"\n\n\n{toggle_option}\n\n\n##################################\n&&&&&&&&&&&&&&&&&&&&&&&&\n^^^^^^^^^^^^^^^^^^^^^^^^^")
-
 if submit_button and user_input:
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
     df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
