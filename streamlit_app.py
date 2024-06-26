@@ -59,11 +59,13 @@ import streamlit as st
 
 with st.form(key='chat_form'):
     # Create columns to hold input and button
-    input_col, button_col = st.columns([4, 1])  
+    input_text, input_col, button_col = st.columns([1, 4, 1])  
 
+    with input text:
+        user_text= st.text("input_text")
+  
     # Inside input column, place the label and text input field
     with input_col:
-        st.markdown("<p style='margin-top: 0.5rem;'>You:</p>", unsafe_allow_html=True)
         user_input = st.text_input("", key='user_input')
 
     # Inside button column, place the submit button
