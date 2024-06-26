@@ -58,21 +58,18 @@ import streamlit as st
 import streamlit as st
 
 with st.form(key='chat_form'):
-    # Create columns to hold input and button
+
     input_text, input_col, button_col = st.columns([1, 4, 1])  
 
-    with input text:
+    with input_text:
         user_text= st.text("input_text")
   
-    # Inside input column, place the label and text input field
     with input_col:
         user_input = st.text_input("", key='user_input')
 
-    # Inside button column, place the submit button
     with button_col:
         submit_button = st.form_submit_button(label='Send')
 
-    # Apply CSS to align the button with the input field
     button_b_pos = "1rem"
     button_css = float_css_helper(bottom=button_b_pos, transition=0.2)
     float_parent(css=button_css)
