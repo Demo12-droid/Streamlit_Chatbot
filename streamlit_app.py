@@ -65,7 +65,7 @@ with st.form(key='chat_form'):
         user_text= st.text("input_text")
   
     with input_col:
-        user_input = st.text_input("", key='user_input')
+        user_input = st.text_input(key='user_input')
 
     with button_col:
         submit_button = st.form_submit_button(label='Send')
