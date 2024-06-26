@@ -8,6 +8,12 @@ from PIL import Image
 import pandas as pd
 import time
 
+from streamlit_float import *
+
+# Initialize float layout
+float_init(theme=True, include_unstable_primary=False)
+
+
 # Function to get a response from the Django backend
 def get_response(user_input,show_plot,toggle_option):
     url = 'http://molly-grateful-hippo.ngrok-free.app/chat/chatbot/'
