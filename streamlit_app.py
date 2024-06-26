@@ -59,16 +59,13 @@ import streamlit as st
 
 with st.form(key='chat_form'):
 
-    input_text, input_col, button_col = st.columns([1, 4, 1])  
+    input_col, button_col = st.columns([4, 1])  
 
-    with input_text:
-        user_text= st.text("input_text")
-  
     with input_col:
-        user_input = st.text_input(key='user_input')
+        user_input = st.text_input("You:",key='user_input')
 
     with button_col:
-        submit_button = st.form_submit_button(label='Send')
+        submit_button = st.form_submit_button("",label='Send')
 
     button_b_pos = "1rem"
     button_css = float_css_helper(bottom=button_b_pos, transition=0.2)
