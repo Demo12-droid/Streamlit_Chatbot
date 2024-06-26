@@ -55,22 +55,26 @@ if 'conversation' not in st.session_state:
     st.session_state['conversation'] = []
 import streamlit as st
 
-# Set up the form container
+import streamlit as st
+
 with st.form(key='chat_form'):
     # Create columns to hold input and button
-    input_col, button_col = st.columns([4, 1]) 
+    input_col, button_col = st.columns([4, 1])  
 
-    # Inside input column, place the text input field
+    # Inside input column, place the label and text input field
     with input_col:
-        user_input = st.text_input("You:", key='user_input')
+        st.markdown("<p style='margin-top: 0.5rem;'>You:</p>", unsafe_allow_html=True)
+        user_input = st.text_input("", key='user_input')
 
     # Inside button column, place the submit button
     with button_col:
         submit_button = st.form_submit_button(label='Send')
 
-    button_b_pos = "25rem" 
+    # Apply CSS to align the button with the input field
+    button_b_pos = "1rem"
     button_css = float_css_helper(bottom=button_b_pos, transition=0.2)
     float_parent(css=button_css)
+
 
 
 toggle_option = st.radio("Select a database:", ('congestion', 'toll_plaza_data'))
