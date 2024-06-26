@@ -53,9 +53,6 @@ st.title("Chatbot")
 
 if 'conversation' not in st.session_state:
     st.session_state['conversation'] = []
-import streamlit as st
-
-import streamlit as st
 
 with st.form(key='chat_form'):
 
