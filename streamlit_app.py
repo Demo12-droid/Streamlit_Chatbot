@@ -9,14 +9,14 @@ import pandas as pd
 import time
 
 # Function to get a response from the Django backend
-def get_response(user_input,show_plot):
+def get_response(user_input,show_plot,toggle_option):
     url = 'http://molly-grateful-hippo.ngrok-free.app/chat/chatbot/'
     headers = {'Content-Type': 'application/json'}
     payload = {
         'username': 'example_user',
         'mode': 'ASK',
         'question': user_input,
-        'table_key': 'toll_plaza_data',
+        'table_key': 'toggle_option',
         'show_plot': show_plot,
     }
 
@@ -40,7 +40,6 @@ def display_plot(plot_base64):
 
 # Streamlit app
 st.title("Chatbot")
-time_taken_display = st.empty()
 
 if 'conversation' not in st.session_state:
     st.session_state['conversation'] = []
@@ -49,10 +48,15 @@ with st.form(key='chat_form'):
     user_input = st.text_input("You: ", key='user_input')
     submit_button = st.form_submit_button(label='Send')
 
+st.title("Toggle Button Example")
+
+toggle_option = st.radio("Select a database:", ('congestion', 'toll_plaza_data'))
 show_plot = st.checkbox("Plot", value=True)
 
+print(f"\n\n\n{toggle_option}\n\n\n")
+
 if submit_button and user_input:
-    sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot)
+    sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
     df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
 
     print("sql   ",sql,"\ndf   ",df,"\n summary   ",text_summary,"\n plot    ",plot)
@@ -65,7 +69,7 @@ if submit_button and user_input:
         "time_taken": time_taken 
     })
     
-    time_taken_display.text(f"Time taken: {time_taken:.4f} seconds")
+    st.write(f"Time taken: {time_taken:.4f} seconds")
 
 for entry in st.session_state.conversation:
     st.markdown(f"<b style='color:blue;'>You:</b> {entry['user_input']}", unsafe_allow_html=True)
