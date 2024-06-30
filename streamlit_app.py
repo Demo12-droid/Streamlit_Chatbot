@@ -68,7 +68,7 @@ show_plot = st.sidebar.checkbox("Plot",value=False)
 if user_input:
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
     df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
-
+    st.write("#############")
     st.session_state.conversation.append({
         "user_input": user_input,
         "sql": sql,
@@ -77,6 +77,7 @@ if user_input:
         "plot": plot,
         "time_taken": time_taken 
     })
+    st.write("#############")
     
 for entry in st.session_state.conversation:
     st.markdown(f"<b style='color:blue;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
