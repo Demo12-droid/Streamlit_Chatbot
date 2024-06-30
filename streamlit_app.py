@@ -57,6 +57,27 @@ if 'conversation' not in st.session_state:
 
 user_input = st.chat_input("You:")
 
+# Custom CSS to modify the sidebar toggle button
+st.markdown("""
+    <style>
+    /* Move the sidebar toggle button to the left middle of the page */
+    .css-1v3fvcr.e1fqkh3o2 {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 24px;
+    }
+    /* Make the sidebar toggle button bigger */
+    .css-1v3fvcr.e1fqkh3o2::before {
+        content: '>';
+        font-size: 32px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 st.sidebar.title("Sidebar")
 st.sidebar.header("Expandable Sidebar Example")
 
