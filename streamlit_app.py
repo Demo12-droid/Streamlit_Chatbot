@@ -49,73 +49,57 @@ def display_plot(plot_base64):
         st.image(plot_image)
 
 # Streamlit app
-# Custom CSS to create a fixed-position container at the top
-st.markdown("""
-    <style>
-    .fixed-top {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: white;
-        padding: 10px 0;
-        z-index: 1000;
-        border-bottom: 1px solid #ccc;
-    }
-    .main {
-        padding-top: 100px; /* Adjust this value based on the height of your fixed header */
-    }
-    </style>
-    """, unsafe_allow_html=True)
-# Fixed container at the top
-st.markdown('<div class="fixed-top"><h2 style="text-align:center;">Fixed Header</h2></div>', unsafe_allow_html=True)
+top_container = st.container()
+main_container = st.container()
 
-# Main content with padding to account for the fixed header
-st.markdown('<div class="main">', unsafe_allow_html=True)
-st.title("Chatbot")
-
-if 'conversation' not in st.session_state:
-    st.session_state['conversation'] = []
+with top_container:
+    st.title("Fixed Header")
 
 
-user_input = st.chat_input("You:")
-
-st.sidebar.title("Options")
-st.sidebar.header("Database options")
-
-toggle_option = st.sidebar.selectbox(
-    'Choose a Database:',
-    ['congestion', 'toll_plaza_data']
-)
-
-st.sidebar.header("Display Options")
-
-show_plot = st.sidebar.checkbox("Plot",value=False)
-
-if user_input:
-    sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
-    df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
-
-    print("sql   ",sql,"\ndf   ",df,"\n summary   ",text_summary,"\n plot    ",plot)
-    st.session_state.conversation.append({
-        "user_input": user_input,
-        "sql": sql,
-        "df": df,
-        "text_summary": text_summary,
-        "plot": plot,
-        "time_taken": time_taken 
-    })
+# st.title("Chatbot")
+with main_container:
+    if 'conversation' not in st.session_state:
+        st.session_state['conversation'] = []
     
-for entry in st.session_state.conversation:
-    st.markdown(f"<b style='color:blue;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
-    if entry['sql']:
-        st.write(f"SQL Query:\n {entry['sql']}")
-    if entry['df']:
-        st.write("Data Frame:")
-        #st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
-    if entry['text_summary']:
-        st.write(f"Summary:\n{entry['text_summary']}")
-    if entry['plot']:
-        st.write("Plot:")
-        #display_plot(entry['plot'])  # Display the plot
-    st.markdown(f"<b style='color:black;'>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
+    
+    user_input = st.chat_input("You:")
+    
+    st.sidebar.title("Options")
+    st.sidebar.header("Database options")
+    
+    toggle_option = st.sidebar.selectbox(
+        'Choose a Database:',
+        ['congestion', 'toll_plaza_data']
+    )
+    
+    st.sidebar.header("Display Options")
+    
+    show_plot = st.sidebar.checkbox("Plot",value=False)
+    
+    if user_input:
+        sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
+        df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
+    
+        print("sql   ",sql,"\ndf   ",df,"\n summary   ",text_summary,"\n plot    ",plot)
+        st.session_state.conversation.append({
+            "user_input": user_input,
+            "sql": sql,
+            "df": df,
+            "text_summary": text_summary,
+            "plot": plot,
+            "time_taken": time_taken 
+        })
+        
+    for entry in st.session_state.conversation:
+        st.markdown(f"<b style='color:blue;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
+        if entry['sql']:
+            st.write(f"SQL Query:\n {entry['sql']}")
+        if entry['df']:
+            st.write("Data Frame:")
+            #st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
+        if entry['text_summary']:
+            st.write(f"Summary:\n{entry['text_summary']}")
+        if entry['plot']:
+            st.write("Plot:")
+            #display_plot(entry['plot'])  # Display the plot
+        st.markdown(f"<b style='color:black;'>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
