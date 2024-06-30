@@ -71,7 +71,7 @@ if user_input:
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
     df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
 
-    print("sql   ",sql,"\ndf   ",df,"\n summary   ",text_summary,"\n plot    ",plot)
+    # print("sql   ",sql,"\ndf   ",df,"\n summary   ",text_summary,"\n plot    ",plot)
     st.session_state.conversation.append({
         "user_input": user_input,
         "sql": sql,
