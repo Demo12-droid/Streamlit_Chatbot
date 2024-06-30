@@ -54,41 +54,14 @@ st.title("Chatbot")
 if 'conversation' not in st.session_state:
     st.session_state['conversation'] = []
 
-# Custom CSS to fix the position of the input box and send button at the bottom
-st.markdown("""
-    <style>
-    .fixed-bottom {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: white;
-        padding: 10px 0;
-    }
-    .fixed-bottom > div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .fixed-bottom input {
-        width: 70%;
-    }
-    .fixed-bottom button {
-        margin-left: 10px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
 
-# Chat input and button in a fixed container at the bottom
-with st.form(key='chat_form', clear_on_submit=True):
-    st.markdown('<div class="fixed-bottom"><div>', unsafe_allow_html=True)
-    user_input = st.text_input("You: ", key='user_input')
-    submit_button = st.form_submit_button(label='Send')
-    st.markdown('</div></div>', unsafe_allow_html=True)
+with st.form(key='chat_form'):
+    user_input = st.chat_input("You:")
+
 toggle_option = st.radio("Select a database:", ('congestion', 'toll_plaza_data'))
 show_plot = st.checkbox("Plot", value=True)
 
-if submit_button and user_input:
+if user_input:
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
     df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
 
