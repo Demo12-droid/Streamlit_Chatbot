@@ -60,7 +60,7 @@ user_input = st.chat_input("You:")
 st.sidebar.title("Options")
 st.sidebar.header("Database options")
 
-option = st.sidebar.selectbox(
+toggle_option = st.sidebar.selectbox(
     'Choose a Database:',
     ['congestion', 'toll_plaza_data']
 )
