@@ -57,21 +57,23 @@ if 'conversation' not in st.session_state:
 # Custom CSS to fix the position of the input box and send button at the bottom
 st.markdown("""
     <style>
-    .chat-input-container {
+    .fixed-bottom {
         position: fixed;
-        bottom: 20px;
+        bottom: 0;
         left: 0;
         width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         background-color: white;
         padding: 10px 0;
     }
-    .chat-input-container > div {
-        flex: 1;
+    .fixed-bottom > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    .chat-input-container button {
+    .fixed-bottom input {
+        width: 70%;
+    }
+    .fixed-bottom button {
         margin-left: 10px;
     }
     </style>
@@ -79,14 +81,10 @@ st.markdown("""
 
 # Chat input and button in a fixed container at the bottom
 with st.form(key='chat_form', clear_on_submit=True):
-    st.markdown('<div class="chat-input-container">', unsafe_allow_html=True)
-    user_input_col, button_col = st.columns([4, 1])
-    with user_input_col:
-        user_input = st.text_input("You: ", key='user_input')
-    with button_col:
-        submit_button = st.form_submit_button(label='Send')
-    st.markdown('</div>', unsafe_allow_html=True)
-
+    st.markdown('<div class="fixed-bottom"><div>', unsafe_allow_html=True)
+    user_input = st.text_input("You: ", key='user_input')
+    submit_button = st.form_submit_button(label='Send')
+    st.markdown('</div></div>', unsafe_allow_html=True)
 toggle_option = st.radio("Select a database:", ('congestion', 'toll_plaza_data'))
 show_plot = st.checkbox("Plot", value=True)
 
