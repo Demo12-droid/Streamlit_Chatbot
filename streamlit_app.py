@@ -28,17 +28,15 @@ def get_response(user_input,show_plot,toggle_option):
 
     start_time = time.time()
     response = requests.post(url, headers=headers, data=json.dumps(payload))
-    # time.sleep(5)
     end_time = time.time()
 
-    time_taken = end_time - start_time  # Calculate time taken
+    time_taken = end_time - start_time  
     
     if response.status_code == 200:
        data = response.json().get('data', {})
        return data.get('sql', 'No SQL query generated'), data.get('df', 'No data frame generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),time_taken
     else:
        return None, None, None, None, time_taken
-    # return "MESSAGE",[],"MESSAGE",None,time_taken
     
 def display_plot(plot_base64):
     if plot_base64:
@@ -69,7 +67,7 @@ show_plot = st.sidebar.checkbox("Plot",value=False)
 if user_input:
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
 
-    st.write("sql",sql,"\n\ndf",df,"\n\ntext_summary",text_summary)
+    # st.write("sql",sql,"\n\ndf",df,"\n\ntext_summary",text_summary)
     df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
     st.session_state.conversation.append({
         "user_input": user_input,
@@ -79,7 +77,7 @@ if user_input:
         "plot": plot,
         "time_taken": time_taken 
     })
-    
+
 for entry in st.session_state.conversation:
     st.markdown(f"<b style='color:blue;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
     if entry['sql']:
