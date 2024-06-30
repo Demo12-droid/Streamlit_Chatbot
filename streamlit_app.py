@@ -74,7 +74,7 @@ if user_input:
         "time_taken": time_taken 
     })
     
-    st.write(f"<b style='color:blue;'>Time taken</b>: {time_taken:.4f} seconds")
+    st.markdown(f"<b style='color:blue;'>Time taken</b>: {time_taken:.4f} seconds")
 
 for entry in st.session_state.conversation:
     st.markdown(f"<b style='color:blue;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
