@@ -27,17 +27,18 @@ def get_response(user_input,show_plot,toggle_option):
     }
 
     start_time = time.time()
-    response = requests.post(url, headers=headers, data=json.dumps(payload))
+    # response = requests.post(url, headers=headers, data=json.dumps(payload))
+    time.sleep(5)
     end_time = time.time()
 
     time_taken = end_time - start_time  # Calculate time taken
     
-    if response.status_code == 200:
-       data = response.json().get('data', {})
-       return data.get('sql', 'No SQL query generated'), data.get('df', 'No data frame generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),time_taken
-    else:
-       return None, None, None, None, time_taken
-
+    # if response.status_code == 200:
+    #    data = response.json().get('data', {})
+    #    return data.get('sql', 'No SQL query generated'), data.get('df', 'No data frame generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),time_taken
+    # else:
+    #    return None, None, None, None, time_taken
+    return "MESSAGE",[],"MESSAGE",None,time_taken
 def display_plot(plot_base64):
     if plot_base64:
         plot_data = base64.b64decode(plot_base64)
