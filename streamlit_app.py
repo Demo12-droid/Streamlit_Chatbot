@@ -60,15 +60,20 @@ user_input = st.chat_input("You:")
 st.sidebar.title("Options")
 st.sidebar.header("Database options")
 
-option = st.sidebar.slider(
+option = st.sidebar.selectbox(
     'Choose a Database:',
     ['congestion', 'toll_plaza_data']
 )
 
+st.sidebar.header("Display Options")
+
+show_plot = st.sidebar.checkbox("Plot",value=False)
 
 
-toggle_option = st.radio("Select a database:", ('congestion', 'toll_plaza_data'))
-show_plot = st.checkbox("Plot", value=True)
+
+
+# toggle_option = st.radio("Select a database:", ('congestion', 'toll_plaza_data'))
+# show_plot = st.checkbox("Plot", value=True)
 
 if user_input:
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
