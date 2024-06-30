@@ -62,6 +62,7 @@ toggle_option = st.sidebar.selectbox(
     ['congestion', 'toll_plaza_data']
 )
 
+st.write(f"{toggle_option}")
 st.sidebar.header("Display Options")
 
 show_plot = st.sidebar.checkbox("Plot",value=False)
