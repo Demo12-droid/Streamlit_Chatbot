@@ -55,8 +55,7 @@ if 'conversation' not in st.session_state:
     st.session_state['conversation'] = []
 
 
-with st.form(key='chat_form'):
-    user_input = st.chat_input("You:")
+user_input = st.chat_input("You:")
 
 toggle_option = st.radio("Select a database:", ('congestion', 'toll_plaza_data'))
 show_plot = st.checkbox("Plot", value=True)
