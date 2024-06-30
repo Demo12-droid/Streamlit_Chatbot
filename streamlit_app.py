@@ -49,6 +49,11 @@ def display_plot(plot_base64):
         st.image(plot_image)
 
 # Streamlit app
+# Fixed container at the top
+st.markdown('<div class="fixed-top"><h2 style="text-align:center;">Fixed Header</h2></div>', unsafe_allow_html=True)
+
+# Main content with padding to account for the fixed header
+st.markdown('<div class="main">', unsafe_allow_html=True)
 st.title("Chatbot")
 
 if 'conversation' not in st.session_state:
@@ -69,12 +74,6 @@ st.sidebar.header("Display Options")
 
 show_plot = st.sidebar.checkbox("Plot",value=False)
 
-
-
-
-# toggle_option = st.radio("Select a database:", ('congestion', 'toll_plaza_data'))
-# show_plot = st.checkbox("Plot", value=True)
-
 if user_input:
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
     df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
@@ -89,8 +88,6 @@ if user_input:
         "time_taken": time_taken 
     })
     
-    #st.markdown(f"<b style='color:blue;'>Time taken</b>: {time_taken:.4f} seconds")
-
 for entry in st.session_state.conversation:
     st.markdown(f"<b style='color:blue;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
     if entry['sql']:
