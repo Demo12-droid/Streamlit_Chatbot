@@ -65,31 +65,28 @@ st.sidebar.header("Display Options")
 
 show_plot = st.sidebar.checkbox("Plot",value=False)
 
-st.write(st.session_state.conversation)
-
-
-# if user_input:
-#     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
-#     df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
-#     st.session_state.conversation.append({
-#         "user_input": user_input,
-#         "sql": sql,
-#         "df": df,
-#         "text_summary": text_summary,
-#         "plot": plot,
-#         "time_taken": time_taken 
-#     })
+if user_input:
+    sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
+    df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
+    st.session_state.conversation.append({
+        "user_input": user_input,
+        "sql": sql,
+        "df": df,
+        "text_summary": text_summary,
+        "plot": plot,
+        "time_taken": time_taken 
+    })
     
-# for entry in st.session_state.conversation:
-#     st.markdown(f"<b style='color:blue;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
-#     if entry['sql']:
-#         st.write(f"SQL Query:\n {entry['sql']}")
-#     if entry['df']:
-#         st.write("Data Frame:")
-#         st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
-#     if entry['text_summary']:
-#         st.write(f"Summary:\n{entry['text_summary']}")
-#     if entry['plot']:
-#         st.write("Plot:")
-#         display_plot(entry['plot'])  # Display the plot
-#     st.markdown(f"<b style='color:black;'>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
+for entry in st.session_state.conversation:
+    st.markdown(f"<b style='color:blue;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
+    if entry['sql']:
+        st.write(f"SQL Query:\n {entry['sql']}")
+    if entry['df']:
+        st.write("Data Frame:")
+        st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
+    if entry['text_summary']:
+        st.write(f"Summary:\n{entry['text_summary']}")
+    if entry['plot']:
+        st.write("Plot:")
+        display_plot(entry['plot'])  # Display the plot
+    st.markdown(f"<b style='color:black;'>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
