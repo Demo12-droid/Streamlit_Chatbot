@@ -49,6 +49,24 @@ def display_plot(plot_base64):
         st.image(plot_image)
 
 # Streamlit app
+# Custom CSS to create a fixed-position container at the top
+st.markdown("""
+    <style>
+    .fixed-top {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        padding: 10px 0;
+        z-index: 1000;
+        border-bottom: 1px solid #ccc;
+    }
+    .main {
+        padding-top: 100px; /* Adjust this value based on the height of your fixed header */
+    }
+    </style>
+    """, unsafe_allow_html=True)
 # Fixed container at the top
 st.markdown('<div class="fixed-top"><h2 style="text-align:center;">Fixed Header</h2></div>', unsafe_allow_html=True)
 
