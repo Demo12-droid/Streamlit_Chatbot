@@ -88,4 +88,4 @@ for entry in st.session_state.conversation:
     if entry['plot']:
         st.write("Plot:")
         #display_plot(entry['plot'])  # Display the plot
-    st.markdown(f"<b style='color:blue;'>Time taken: </b> {time_taken:.4f} seconds")
+    st.markdown(f"<b style='color:blue;'>Time taken: </b> {entry['time_taken']:.4f} seconds")
