@@ -63,7 +63,7 @@ st.markdown("""
     /* Move the sidebar toggle button to the left middle of the page */
     .css-1v3fvcr.e1fqkh3o2 {
         top: 50%;
-        left: 0;
+        left: 20;
         transform: translateY(-50%);
         border: none;
         background-color: transparent;
