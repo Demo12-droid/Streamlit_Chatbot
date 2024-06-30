@@ -49,57 +49,50 @@ def display_plot(plot_base64):
         st.image(plot_image)
 
 # Streamlit app
-top_container = st.container()
-main_container = st.container()
+st.title("Chatbot")
 
-with top_container:
-    st.title("Fixed Header")
+if 'conversation' not in st.session_state:
+    st.session_state['conversation'] = []
+
 
 user_input = st.chat_input("You:")
 
-# st.title("Chatbot")
-with main_container:
-    if 'conversation' not in st.session_state:
-        st.session_state['conversation'] = []
+st.sidebar.title("Options")
+st.sidebar.header("Database options")
+
+toggle_option = st.sidebar.selectbox(
+    'Choose a Database:',
+    ['congestion', 'toll_plaza_data']
+)
+
+st.sidebar.header("Display Options")
+
+show_plot = st.sidebar.checkbox("Plot",value=False)
+
+if user_input:
+    sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
+    df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
+
+    print("sql   ",sql,"\ndf   ",df,"\n summary   ",text_summary,"\n plot    ",plot)
+    st.session_state.conversation.append({
+        "user_input": user_input,
+        "sql": sql,
+        "df": df,
+        "text_summary": text_summary,
+        "plot": plot,
+        "time_taken": time_taken 
+    })
     
-    
-    
-    st.sidebar.title("Options")
-    st.sidebar.header("Database options")
-    
-    toggle_option = st.sidebar.selectbox(
-        'Choose a Database:',
-        ['congestion', 'toll_plaza_data']
-    )
-    
-    st.sidebar.header("Display Options")
-    
-    show_plot = st.sidebar.checkbox("Plot",value=False)
-    
-    if user_input:
-        sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
-        df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
-    
-        print("sql   ",sql,"\ndf   ",df,"\n summary   ",text_summary,"\n plot    ",plot)
-        st.session_state.conversation.append({
-            "user_input": user_input,
-            "sql": sql,
-            "df": df,
-            "text_summary": text_summary,
-            "plot": plot,
-            "time_taken": time_taken 
-        })
-        
-    for entry in st.session_state.conversation:
-        st.markdown(f"<b style='color:blue;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
-        if entry['sql']:
-            st.write(f"SQL Query:\n {entry['sql']}")
-        if entry['df']:
-            st.write("Data Frame:")
-            #st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
-        if entry['text_summary']:
-            st.write(f"Summary:\n{entry['text_summary']}")
-        if entry['plot']:
-            st.write("Plot:")
-            #display_plot(entry['plot'])  # Display the plot
-        st.markdown(f"<b style='color:black;'>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
+for entry in st.session_state.conversation:
+    st.markdown(f"<b style='color:blue;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
+    if entry['sql']:
+        st.write(f"SQL Query:\n {entry['sql']}")
+    if entry['df']:
+        st.write("Data Frame:")
+        #st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
+    if entry['text_summary']:
+        st.write(f"Summary:\n{entry['text_summary']}")
+    if entry['plot']:
+        st.write("Plot:")
+        #display_plot(entry['plot'])  # Display the plot
+    st.markdown(f"<b style='color:black;'>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
