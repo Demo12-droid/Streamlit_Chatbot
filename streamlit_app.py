@@ -55,6 +55,7 @@ main_container = st.container()
 with top_container:
     st.title("Fixed Header")
 
+user_input = st.chat_input("You:")
 
 # st.title("Chatbot")
 with main_container:
@@ -62,7 +63,6 @@ with main_container:
         st.session_state['conversation'] = []
     
     
-    user_input = st.chat_input("You:")
     
     st.sidebar.title("Options")
     st.sidebar.header("Database options")
