@@ -57,6 +57,17 @@ if 'conversation' not in st.session_state:
 
 user_input = st.chat_input("You:")
 
+st.sidebar.title("Sidebar")
+st.sidebar.header("Expandable Sidebar Example")
+
+# Adding a selectbox to the sidebar
+option = st.sidebar.selectbox(
+    'Choose an option:',
+    ['Option 1', 'Option 2', 'Option 3']
+)
+
+
+
 toggle_option = st.radio("Select a database:", ('congestion', 'toll_plaza_data'))
 show_plot = st.checkbox("Plot", value=True)
 
