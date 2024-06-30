@@ -27,18 +27,16 @@ def get_response(user_input,show_plot,toggle_option):
     }
 
     start_time = time.time()
-    # response = requests.post(url, headers=headers, data=json.dumps(payload))
-    time.sleep(5)
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
     end_time = time.time()
 
     time_taken = end_time - start_time  # Calculate time taken
     
-    # if response.status_code == 200:
-    #    data = response.json().get('data', {})
-    #    return data.get('sql', 'No SQL query generated'), data.get('df', 'No data frame generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),time_taken
-    # else:
-    #    return None, None, None, None, time_taken
-    return "MESSAGE","MESSAGE","MESSAGE","MESSAGE",time_taken
+    if response.status_code == 200:
+       data = response.json().get('data', {})
+       return data.get('sql', 'No SQL query generated'), data.get('df', 'No data frame generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),time_taken
+    else:
+       return None, None, None, None, time_taken
 
 def display_plot(plot_base64):
     if plot_base64:
@@ -71,7 +69,6 @@ if user_input:
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
     df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
 
-    # print("sql   ",sql,"\ndf   ",df,"\n summary   ",text_summary,"\n plot    ",plot)
     st.session_state.conversation.append({
         "user_input": user_input,
         "sql": sql,
@@ -87,11 +84,11 @@ for entry in st.session_state.conversation:
         st.write(f"SQL Query:\n {entry['sql']}")
     if entry['df']:
         st.write("Data Frame:")
-        #st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
+        st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
     if entry['text_summary']:
         st.write(f"Summary:\n{entry['text_summary']}")
     if entry['plot']:
         st.write("Plot:")
-        #display_plot(entry['plot'])  # Display the plot
+        display_plot(entry['plot'])  # Display the plot
     st.write(f"{entry['time_taken']}")
     st.markdown(f"<b style='color:black;'>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
