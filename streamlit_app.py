@@ -90,6 +90,6 @@ for entry in st.session_state.conversation:
     if entry['plot']:
         st.write("Plot:")
         display_plot(entry['plot'])  # Display the plot
-    if entry['sql'] is not None and entry['sql'] is None:
+    if entry['sql'] is not None and entry['df'] is None:
         st.write("No data is available for the given question.If data is available, please retry")
     st.markdown(f"<b>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
