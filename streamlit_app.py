@@ -66,9 +66,9 @@ show_plot = st.sidebar.checkbox("Plot",value=False)
 
 if toggle_option == "congestion":
     st.markdown("<b style='color:orange;'>Try asking the following questions: </b>")
-    if st.button("What is the average extent in jan 2024", type="secondary")
+    if st.button("What is the average extent in jan 2024", type="secondary"):
         user_input = "What is the average extent in jan 2024"    
-    if st.button("What is the range of the data"):
+    if st.button("What is the range of the data", type="secondary"):
         user_input="What is the range of the data"
     #st.markdown("<b style='color:orange;'>Try asking the following questions: </b>\n What is the average extent in jan 2024 \n What is the range of the data \n What are the details of the highest extent \n What has higher average extent jan 2024 or feb 2024 \n", unsafe_allow_html=True)
 if toggle_option == "toll_plaza_data":
