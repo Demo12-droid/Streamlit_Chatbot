@@ -75,6 +75,7 @@ if toggle_option == "congestion":
     if st.button("What has higher average extent jan 2024 or feb 2024", type="secondary"):
         user_input="What has higher average extent jan 2024 or feb 2024"
 if toggle_option == "toll_plaza_data":
+    st.markdown("<b style='color:orange;'>Try asking the following questions: </b>", unsafe_allow_html=True)
     if st.button("What is the total number of vehicles of type MAV in jan 2024", type="secondary"):
         user_input="What is the total number of vehicles of type MAV in jan 2024"
     if st.button("What is the starting date and the ending date in the data", type="secondary"):
