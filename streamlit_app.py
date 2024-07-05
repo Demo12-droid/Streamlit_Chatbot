@@ -65,15 +65,26 @@ st.sidebar.header("Display Options")
 show_plot = st.sidebar.checkbox("Plot",value=False)
 
 if toggle_option == "congestion":
-    st.markdown("<b style='color:orange;'>Try asking the following questions: </b>")
+    st.markdown("<b style='color:orange;'>Try asking the following questions: </b>", unsafe_allow_html=True)
     if st.button("What is the average extent in jan 2024", type="secondary"):
         user_input = "What is the average extent in jan 2024"    
     if st.button("What is the range of the data", type="secondary"):
         user_input="What is the range of the data"
-    #st.markdown("<b style='color:orange;'>Try asking the following questions: </b>\n What is the average extent in jan 2024 \n What is the range of the data \n What are the details of the highest extent \n What has higher average extent jan 2024 or feb 2024 \n", unsafe_allow_html=True)
+    if st.button("What are the details of the highest extent", type="secondary"):
+        user_input="What are the details of the highest extent"
+    if st.button("What has higher average extent jan 2024 or feb 2024", type="secondary"):
+        user_input="What has higher average extent jan 2024 or feb 2024"
 if toggle_option == "toll_plaza_data":
-    st.markdown("<b style='color:orange;'>Try asking the following questions: </b>\n What is the total number of vehicles of type MAV in jan 2024\nWhat is the starting date and the ending date in the data\nWhat is the revenue of different vehicle classes\nWhat is the revenue of different vehicle classes in feb 2024\nWhat is the total number of vehicles in each vehicle class in jan 2024", unsafe_allow_html=True)
-
+    if st.button("What is the total number of vehicles of type MAV in jan 2024", type="secondary"):
+        user_input="What is the total number of vehicles of type MAV in jan 2024"
+    if st.button("What is the starting date and the ending date in the data", type="secondary"):
+        user_input="What is the starting date and the ending date in the data"
+    if st.button("What is the revenue of different vehicle classes", type="secondary"):
+        user_input="What is the revenue of different vehicle classes"
+    if st.button("What is the revenue of different vehicle classes in feb 2024", type="secondary"):
+        user_input="What is the revenue of different vehicle classes in feb 2024"
+    if st.button("What is the total number of vehicles in each vehicle class in jan 2024", type="secondary"):
+        user_input="What is the total number of vehicles in each vehicle class in jan 2024"
 
 if user_input:
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
