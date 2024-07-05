@@ -65,9 +65,9 @@ st.sidebar.header("Display Options")
 show_plot = st.sidebar.checkbox("Plot",value=False)
 
 if toggle_option == "congestion":
-    st.markdown("<b style='color:blue;'>Try asking the following questions: </b>\n1. What is the average extent in jan 2024\n2. What is the range of the data\n3. What are the details of the highest extent\n4. What has higher average extent jan 2024 or feb 2024\n", unsafe_allow_html=True)
+    st.markdown("<b style='color:orange;'>Try asking the following questions: </b>\n1. What is the average extent in jan 2024\n2. What is the range of the data\n3. What are the details of the highest extent\n4. What has higher average extent jan 2024 or feb 2024\n", unsafe_allow_html=True)
 if toggle_option == "toll_plaza_data":
-    st.markdown("<b style='color:blue;'>Try asking the following questions: </b>\n1. What is the total number of vehicles of type MAV in jan 2024\n2. What is the starting date and the ending date in the data\n3. What is the revenue of different vehicle classes\n4. What is the revenue of different vehicle classes in feb 2024\n5. What is the total number of vehicles in each vehicle class in jan 2024", unsafe_allow_html=True)
+    st.markdown("<b style='color:orange;'>Try asking the following questions: </b>\n1. What is the total number of vehicles of type MAV in jan 2024\n2. What is the starting date and the ending date in the data\n3. What is the revenue of different vehicle classes\n4. What is the revenue of different vehicle classes in feb 2024\n5. What is the total number of vehicles in each vehicle class in jan 2024", unsafe_allow_html=True)
 
 
 if user_input:
@@ -85,7 +85,7 @@ if user_input:
     })
 
 for entry in st.session_state.conversation:
-    st.markdown(f"<b style='color:blue;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
+    st.markdown(f"<b style='color:orange;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
     if entry['sql']:
         st.write(f"SQL Query:\n {entry['sql']}")
     if entry['df']:
