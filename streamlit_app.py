@@ -65,7 +65,7 @@ st.sidebar.header("Display Options")
 show_plot = st.sidebar.checkbox("Plot",value=False)
 
 if toggle_option == "congestion":
-    st.button("What is the average extent in jan 2024", type="primary")
+    st.button("What is the average extent in jan 2024", type="secondary")
     #if st.button("Say hello"):
     #    st.write("Why hello there")
     #st.markdown("<b style='color:orange;'>Try asking the following questions: </b>\n What is the average extent in jan 2024 \n What is the range of the data \n What are the details of the highest extent \n What has higher average extent jan 2024 or feb 2024 \n", unsafe_allow_html=True)
