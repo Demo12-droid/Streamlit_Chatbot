@@ -51,7 +51,7 @@ if 'conversation' not in st.session_state:
     st.session_state['conversation'] = []
 
 
-user_input = st.chat_input("You:")
+user_input = st.chat_input("Ask a question...")
 
 st.sidebar.title("Options")
 
