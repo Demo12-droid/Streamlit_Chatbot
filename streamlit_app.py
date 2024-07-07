@@ -107,7 +107,7 @@ for entry in st.session_state.conversation:
         f"""
         <div style="text-align: right; margin-right: 10px;">
             <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-                <b style="color:#0B51A0;">You: {entry['user_input']}</b>
+                <b style="color:#0B51A0;">{entry['user_input']}</b>
             </span>
         </div>
         """, 
