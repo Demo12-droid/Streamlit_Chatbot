@@ -115,14 +115,54 @@ for entry in st.session_state.conversation:
     )
     # if entry['sql']:
     #     st.write(f"SQL Query:\n {entry['sql']}")
-    if entry['df']:
-        st.write("Data:")
-        st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
+    # if entry['df']:
+    #     st.write("Data:")
+    #     st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
+    # if entry['text_summary']:
+    #     st.write(f"Summary:\n {entry['text_summary']}")
+    # if entry['plot']:
+    #     st.write("Plot:")
+    #     display_plot(entry['plot'])  # Display the plot
+if entry['df']:
+    st.markdown(
+        """
+        <div style="margin: 10px 0;">
+            <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
+                <b style="color:#0B51A0;">Data:</b>
+            </span>
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )
+    st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
+    
     if entry['text_summary']:
-        st.write(f"Summary:\n {entry['text_summary']}")
+        st.markdown(
+            f"""
+            <div style="margin: 10px 0;">
+                <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
+                    <b style="color:#0B51A0;">Summary:</b>
+                </span>
+            </div>
+            <div style="background-color: #f1f1f1; border-radius: 5px; padding: 10px;">
+                {entry['text_summary']}
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
+    
     if entry['plot']:
-        st.write("Plot:")
-        display_plot(entry['plot'])  # Display the plot
+        st.markdown(
+            """
+            <div style="margin: 10px 0;">
+                <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
+                    <b style="color:#0B51A0;">Plot:</b>
+                </span>
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
+        display_plot(entry['plot'])
     if entry['sql'] is not None and entry['df'] is None:
         st.markdown("<b>No data is available for the given question.If data is available, please retry</b>", unsafe_allow_html=True)
     st.markdown(f"<b>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
