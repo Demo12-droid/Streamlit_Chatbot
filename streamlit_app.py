@@ -102,7 +102,15 @@ if user_input:
     })
 
 for entry in st.session_state.conversation:
-    st.markdown(f"<b style='color:#0B51A0;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
+    # st.markdown(f"<b style='color:#0B51A0;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
+    st.markdown(
+    f"""
+    <div style="text-align: right;">
+        <b style="color:#0B51A0;">You: {entry['user_input']}</b>
+    </div>
+    """, 
+    unsafe_allow_html=True
+    )    
     # if entry['sql']:
     #     st.write(f"SQL Query:\n {entry['sql']}")
     if entry['df']:
