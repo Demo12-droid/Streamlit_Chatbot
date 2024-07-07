@@ -75,7 +75,7 @@ if toggle_option == "congestion":
     if st.button("What has higher average extent jan 2024 or feb 2024", type="secondary"):
         user_input="What has higher average extent jan 2024 or feb 2024"
 if toggle_option == "toll_plaza_data":
-    st.markdown("<b style='color:orange;'>Try asking the following questions: </b>", unsafe_allow_html=True)
+    st.markdown("<b style=\"color:#0B51A0;\">Try asking the following questions:</b>", unsafe_allow_html=True)
     if st.button("What is the total number of vehicles of type MAV in Jan 2024", type="secondary"):
         user_input="What is the total number of vehicles of type MAV in Jan 2024"
     if st.button("What is the time range of the data?", type="secondary"):
@@ -102,11 +102,11 @@ if user_input:
     })
 
 for entry in st.session_state.conversation:
-    st.markdown(f"<b style='color:orange;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
+    st.markdown(f"<b style='color:#0B51A0;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
     # if entry['sql']:
     #     st.write(f"SQL Query:\n {entry['sql']}")
     if entry['df']:
-        st.write("Data Frame:")
+        st.write("Data:")
         st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
     if entry['text_summary']:
         st.write(f"Summary:\n {entry['text_summary']}")
