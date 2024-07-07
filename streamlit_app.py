@@ -141,13 +141,14 @@ if entry['df']:
             f"""
             <div style="margin: 10px 0;">
                 <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-                    <b style="color:#0B51A0;">Summary:</b>
+                    <b>Summary: {entry['text_summary']}</b>
                 </span>
             </div>
-            <div style="background-color: #f1f1f1; border-radius: 5px; padding: 10px;">
-                {entry['text_summary']}
-            </div>
-            """, 
+            """,
+            # <div style="background-color: #f1f1f1; border-radius: 5px; padding: 10px;">
+            # </div>
+            # style="color:#0B51A0;"
+            # """, 
             unsafe_allow_html=True
         )
     
@@ -165,4 +166,4 @@ if entry['df']:
         display_plot(entry['plot'])
     if entry['sql'] is not None and entry['df'] is None:
         st.markdown("<b>No data is available for the given question.If data is available, please retry</b>", unsafe_allow_html=True)
-    st.markdown(f"<b>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
+    # st.markdown(f"<b>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
