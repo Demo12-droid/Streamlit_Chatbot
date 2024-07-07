@@ -123,18 +123,18 @@ for entry in st.session_state.conversation:
     # if entry['plot']:
     #     st.write("Plot:")
     #     display_plot(entry['plot'])  # Display the plot
-if entry['df']:
-    st.markdown(
-        """
-        <div style="margin: 10px 0;">
-            <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-                <b>Data:</b>
-            </span>
-        </div>
-        """, 
-        unsafe_allow_html=True
-    )
-    st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
+    if entry['df']:
+        st.markdown(
+            """
+            <div style="margin: 10px 0;">
+                <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
+                    <b>Data:</b>
+                </span>
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
+        st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
     
     if entry['text_summary']:
         st.markdown(
