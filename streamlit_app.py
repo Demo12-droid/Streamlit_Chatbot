@@ -141,7 +141,7 @@ if entry['df']:
             f"""
             <div style="margin: 10px 0;">
                 <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-                    <b>Summary: {entry['text_summary']}</b>
+                    <b>Summary: </b><p>{entry['text_summary']}</p>
                 </span>
             </div>
             """,
