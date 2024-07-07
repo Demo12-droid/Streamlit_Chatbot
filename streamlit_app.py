@@ -103,8 +103,8 @@ if user_input:
 
 for entry in st.session_state.conversation:
     st.markdown(f"<b style='color:orange;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
-    if entry['sql']:
-        st.write(f"SQL Query:\n {entry['sql']}")
+    # if entry['sql']:
+    #     st.write(f"SQL Query:\n {entry['sql']}")
     if entry['df']:
         st.write("Data Frame:")
         st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
