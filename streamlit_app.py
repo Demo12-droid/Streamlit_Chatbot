@@ -128,7 +128,7 @@ if entry['df']:
         """
         <div style="margin: 10px 0;">
             <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-                <b style="color:#0B51A0;">Data:</b>
+                <b>Data:</b>
             </span>
         </div>
         """, 
@@ -157,7 +157,7 @@ if entry['df']:
             """
             <div style="margin: 10px 0;">
                 <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-                    <b style="color:#0B51A0;">Plot:</b>
+                    <b>Plot:</b>
                 </span>
             </div>
             """, 
