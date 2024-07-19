@@ -19,7 +19,7 @@ def get_response(user_input,show_plot,toggle_option):
     url = 'http://molly-grateful-hippo.ngrok-free.app/chat/chatbot/'
     headers = {'Content-Type': 'application/json'}
     payload = {
-        'username': 'test2',
+        'username': 'test3',
         'mode': 'ASK',
         'question': user_input,
         'table_key': toggle_option,
