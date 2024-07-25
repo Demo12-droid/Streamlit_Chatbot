@@ -7,7 +7,7 @@ from PIL import Image
 # from chatbot_backend.chat.main import run_code
 import pandas as pd
 import time
-
+from streamlit_folium import folium_static
 from streamlit_float import *
 
 # Initialize float layout
@@ -75,6 +75,14 @@ if toggle_option == "congestion":
         user_input="What are the details of the highest extent"
     if st.button("What has higher average extent jan 2024 or feb 2024", type="secondary"):
         user_input="What has higher average extent jan 2024 or feb 2024"
+    if st.button("What are the congested locations on the CBD 1 corridor", type="secondary"):
+        user_input="What are the congested locations on the CBD 1 corridor"
+    if st.button("What locations were congested in february", type="secondary"):
+        user_input="What locations were congested in february"
+    if st.button("What are the congested locations in the Koramangala 2nd Block area", type="secondary"):
+        user_input="What are the congested locations in the Koramangala 2nd Block area"
+
+
 if toggle_option == "toll_plaza_data":
     st.markdown("<b style=\"color:#0B51A0;\">Try asking the following questions:</b>", unsafe_allow_html=True)
     if st.button("What is the total number of vehicles of type MAV in Jan 2024", type="secondary"):
@@ -164,7 +172,10 @@ for entry in st.session_state.conversation:
             """, 
             unsafe_allow_html=True
         )
-        display_plot(entry['plot'])
+        try:
+            folium_static(entry['plot'])
+        except:
+            display_plot(entry['plot'])
     if entry['sql'] is not None and entry['df'] is None:
         st.markdown("<b>No data is available for the given question.If data is available, please retry</b>", unsafe_allow_html=True)
     # st.markdown(f"<b>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
