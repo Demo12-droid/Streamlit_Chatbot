@@ -1,1 +1,2 @@
 streamlit_float
+streamlit_folium
