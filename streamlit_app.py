@@ -63,7 +63,7 @@ toggle_option = st.sidebar.selectbox(
 )
 
 st.sidebar.header("Display Options")
-show_plot = st.sidebar.checkbox("Plot",value=False)
+show_plot = st.sidebar.checkbox("Plot",value=True)
 
 if toggle_option == "congestion":
     st.markdown("<b style='color:#0B51A0;'>Try asking the following questions: </b>", unsafe_allow_html=True)
