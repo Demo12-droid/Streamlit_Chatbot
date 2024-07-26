@@ -125,7 +125,7 @@ for entry in st.session_state.messages:
         df = content.get('df', None) 
         time_taken = content.get('time_taken')
 
-        if sql is not None and df is None:
+        if sql_query is not None and df is None:
             with st.chat_message("assistant"):
                 st.write("No data is available for the given question.If data is available, please retry")
         else:            
