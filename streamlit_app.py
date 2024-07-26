@@ -103,7 +103,8 @@ if user_input:
 
     # st.write("sql",sql,"\n\ndf",df,"\n\ntext_summary",text_summary)
     # df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
-    st.session_state.conversation.append({
+    st.session_state.messages.append({
+        "role": "assistant",
         "user_input": user_input,
         "sql": sql,
         "df": df,
@@ -112,56 +113,62 @@ if user_input:
         "time_taken": time_taken 
     })
 
-for entry in st.session_state.conversation:
-    # st.markdown(f"<b style='color:#0B51A0;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
-    st.markdown(
-        f"""
-        <div style="text-align: right; margin-right: 10px;">
-            <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-                <b style="color:#0B51A0;">{entry['user_input']}</b>
-            </span>
-        </div>
-        """, 
-        unsafe_allow_html=True
-    )
-    # if entry['sql']:
-    #     st.write(f"SQL Query:\n {entry['sql']}")
-    # if entry['df']:
-    #     st.write("Data:")
-    #     st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
-    # if entry['text_summary']:
-    #     st.write(f"Summary:\n {entry['text_summary']}")
-    # if entry['plot']:
-    #     st.write("Plot:")
-    #     display_plot(entry['plot'])  # Display the plot
+for entry in st.session_state.messages:
+    ## st.markdown(f"<b style='color:#0B51A0;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
+    # st.markdown(
+    #     f"""
+    #     <div style="text-align: right; margin-right: 10px;">
+    #         <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
+    #             <b style="color:#0B51A0;">{entry['user_input']}</b>
+    #         </span>
+    #     </div>
+    #     """, 
+    #     unsafe_allow_html=True
+    # )
+
+    
+    ## if entry['sql']:
+    ##     st.write(f"SQL Query:\n {entry['sql']}")
+    ## if entry['df']:
+    ##     st.write("Data:")
+    ##     st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
+    ## if entry['text_summary']:
+    ##     st.write(f"Summary:\n {entry['text_summary']}")
+    ## if entry['plot']:
+    ##     st.write("Plot:")
+    ##     display_plot(entry['plot'])  # Display the plot
     if entry['df']:
-        st.markdown(
-            """
-            <div style="margin: 10px 0;">
-                <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-                    <b>Data:</b>
-                </span>
-            </div>
-            """, 
-            unsafe_allow_html=True
-        )
-        st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
+        with st.chat_message(message["role"]):
+
+        # st.markdown(
+        #     """
+        #     <div style="margin: 10px 0;">
+        #         <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
+        #             <b>Data:</b>
+        #         </span>
+        #     </div>
+        #     """, 
+        #     unsafe_allow_html=True
+        # )
+            st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
     
     if entry['text_summary']:
-        st.markdown(
-            f"""
-            <div style="margin: 10px 0;">
-                <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-                    <b>Summary: </b><p>{entry['text_summary']}</p>
-                </span>
-            </div>
-            """,
-            # <div style="background-color: #f1f1f1; border-radius: 5px; padding: 10px;">
-            # </div>
-            # style="color:#0B51A0;"
-            # """, 
-            unsafe_allow_html=True
-        )
+        # st.markdown(
+        #     f"""
+        #     <div style="margin: 10px 0;">
+        #         <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
+        #             <b>Summary: </b><p>{entry['text_summary']}</p>
+        #         </span>
+        #     </div>
+        #     """,
+        #     # <div style="background-color: #f1f1f1; border-radius: 5px; padding: 10px;">
+        #     # </div>
+        #     # style="color:#0B51A0;"
+        #     # """, 
+        #     unsafe_allow_html=True
+        # )
+        with st.chat_message(message["role"]):
+            entry["text_summary"]
     
     if entry['plot']:
         st.markdown(
@@ -182,7 +189,8 @@ for entry in st.session_state.conversation:
             components.html(entry['plot'],height=430,scrolling=True)
 
     if entry['sql'] is not None and entry['df'] is None:
-        st.markdown("<b>No data is available for the given question.If data is available, please retry</b>", unsafe_allow_html=True)
+        with st.chat_message(message["role"]):
+            st.write("No data is available for the given question.If data is available, please retry")
     # st.markdown(f"<b>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
 
 
