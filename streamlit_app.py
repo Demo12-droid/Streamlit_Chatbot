@@ -10,11 +10,8 @@ import time
 from streamlit_folium import folium_static
 from streamlit_float import *
 
-# Initialize float layout
 float_init(theme=True, include_unstable_primary=False)
 
-
-# Function to get a response from the Django backend
 def get_response(user_input,show_plot,toggle_option):
     url = 'http://molly-grateful-hippo.ngrok-free.app/chat/chatbot/'
     headers = {'Content-Type': 'application/json'}
@@ -104,7 +101,6 @@ if "messages" not in st.session_state.keys():
 if user_input:
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
 
-    # st.write("sql",sql,"\n\ndf",df,"\n\ntext_summary",text_summary)
     # df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
     st.session_state.messages.append({
         "role": "assistant",
@@ -133,19 +129,8 @@ for entry in st.session_state.messages:
     # )
 
     
-    ## if entry['sql']:
-    ##     st.write(f"SQL Query:\n {entry['sql']}")
-    ## if entry['df']:
-    ##     st.write("Data:")
-    ##     st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
-    ## if entry['text_summary']:
-    ##     st.write(f"Summary:\n {entry['text_summary']}")
-    ## if entry['plot']:
-    ##     st.write("Plot:")
-    ##     display_plot(entry['plot'])  # Display the plot
     # if entry['df']:
-    if content["df"]:
-        with st.chat_message(message["role"]):
+    #     with st.chat_message(message["role"]):
 
         # st.markdown(
         #     """
@@ -157,7 +142,7 @@ for entry in st.session_state.messages:
         #     """, 
         #     unsafe_allow_html=True
         # )
-            st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
+            # st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
     
     if entry['text_summary']:
         # st.markdown(
