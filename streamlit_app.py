@@ -176,7 +176,8 @@ for entry in st.session_state.conversation:
         )
         # st.write(type(entry['plot']))
         try:
-            folium_static(entry['plot'])
+            # folium_static(entry['plot'])
+            components.html(entry['plot'], height=600, scrolling=True)
         except:
             display_plot(entry['plot'])
     if entry['sql'] is not None and entry['df'] is None:
