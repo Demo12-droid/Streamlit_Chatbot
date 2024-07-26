@@ -95,7 +95,7 @@ if 'messages' not in st.session_state:
     st.session_state.messages = []
 
 if user_input:
-    st.session_state.messages = [{"role": "user", "content": user_input}]
+    st.session_state.messages.append({"role": "user", "content": user_input})
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
 
     # df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
