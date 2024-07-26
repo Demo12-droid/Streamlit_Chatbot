@@ -98,6 +98,9 @@ if toggle_option == "toll_plaza_data":
     if st.button("What is the total number of vehicles of each vehicle class in Jan 2024", type="secondary"):
         user_input="What is the total number of vehicles in each vehicle class in Jan 2024"
 
+if "messages" not in st.session_state.keys():
+    st.session_state.messages = [{"role": "assistant", "content": "How may I help you?"}]
+
 if user_input:
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
 
