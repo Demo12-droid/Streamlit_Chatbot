@@ -138,5 +138,5 @@ for entry in st.session_state.messages:
                     try:
                         display_plot(plot)
                     except:
-                        components.html(plot,height=410,scrolling=True)
+                        components.html(plot,height=390,scrolling=True)
                 st.write(f"<b>Time taken: {time_taken:.4f} seconds</b>", unsafe_allow_html=True)
