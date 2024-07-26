@@ -176,10 +176,11 @@ for entry in st.session_state.conversation:
         )
         # st.write(type(entry['plot']))
         try:
-            # folium_static(entry['plot'])
-            components.html(entry['plot'], height=600, scrolling=True)
-        except:
             display_plot(entry['plot'])
+
+        except:
+            components.html(entry['plot'],scrolling=True)
+
     if entry['sql'] is not None and entry['df'] is None:
         st.markdown("<b>No data is available for the given question.If data is available, please retry</b>", unsafe_allow_html=True)
     # st.markdown(f"<b>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
