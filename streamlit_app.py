@@ -194,14 +194,23 @@ for entry in st.session_state.messages:
         with st.chat_message("User"):
             st.write(content)
     elif role == 'assistant':
-        sql_query = content.get('sql', 'no SQL query')
-        text_summary = content.get('text_summary', 'no summary')
-        plot_html = content.get('plot', None)
-        df_html = content.get('df', None)  # HTML string for DataFrame
-        time_taken = content.get('time_taken', 'no time taken')
+        sql_query = content.get('sql', None)
+        text_summary = content.get('text_summary', None)
+        plot = content.get('plot', None)
+        df = content.get('df', None) 
+        time_taken = content.get('time_taken', None)
 
         with st.chat_message("assistant"):
-            st.write(text_summary)
+            if df:
+                st.dataframe(df)
+            if text_summary:
+                st.write(text_summary)
+            if plot:
+                try:
+                    display_plot(entry['plot'])
+
+                except:
+                    components.html(entry['plot'],height=430,scrolling=True)
 # if "messages" not in st.session_state.keys():
 #     st.session_state.messages = [{"role": "assistant", "content": "How may I help you?"}]
 
