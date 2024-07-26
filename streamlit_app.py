@@ -46,7 +46,7 @@ def display_plot(plot_base64):
             plot_image = Image.open(BytesIO(plot_data))
             st.image(plot_image)
         except:
-            pass
+            plot=None
             
 
 # Streamlit app
