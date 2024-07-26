@@ -204,8 +204,8 @@ for entry in st.session_state.messages:
         df_html = content.get('df', None)  # HTML string for DataFrame
         time_taken = content.get('time_taken', 'no time taken')
 
-        with st.chat_message(entry["role"]):
-            st.write(entry["content"])
+        with st.chat_message("assistant"):
+            st.write(text_summary)
 # if "messages" not in st.session_state.keys():
 #     st.session_state.messages = [{"role": "assistant", "content": "How may I help you?"}]
 
