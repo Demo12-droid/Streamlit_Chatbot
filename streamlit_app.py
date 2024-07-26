@@ -98,9 +98,6 @@ if toggle_option == "toll_plaza_data":
 if 'messages' not in st.session_state:
     st.session_state.messages = []
 
-
-st.session_state.messages = [{"role": "user", "content": "How may I help you?"}]
-
 if user_input:
     st.session_state.messages = [{"role": "user", "content": user_input}]
     sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
