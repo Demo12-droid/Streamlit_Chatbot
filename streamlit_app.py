@@ -176,7 +176,7 @@ for entry in st.session_state.conversation:
             """, 
             unsafe_allow_html=True
         )
-        st.write(type(entry['plot']))
+        # st.write(type(entry['plot']))
         try:
             folium_static(entry['plot'])
         except:
