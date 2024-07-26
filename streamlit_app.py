@@ -207,10 +207,9 @@ for entry in st.session_state.messages:
                 st.write(text_summary)
             if plot:
                 try:
-                    display_plot(entry['plot'])
-
+                    display_plot(plot)
                 except:
-                    components.html(entry['plot'],height=430,scrolling=True)
+                    components.html(plot,height=430,scrolling=True)
 # if "messages" not in st.session_state.keys():
 #     st.session_state.messages = [{"role": "assistant", "content": "How may I help you?"}]
 
