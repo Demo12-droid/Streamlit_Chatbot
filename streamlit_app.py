@@ -144,7 +144,7 @@ for entry in st.session_state.messages:
     ##     st.write("Plot:")
     ##     display_plot(entry['plot'])  # Display the plot
     # if entry['df']:
-    if content.get(df):
+    if content["df"]:
         with st.chat_message(message["role"]):
 
         # st.markdown(
