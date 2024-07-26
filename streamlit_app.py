@@ -190,9 +190,10 @@ for entry in st.session_state.conversation:
 if "messages" not in st.session_state.keys():
     st.session_state.messages = [{"role": "assistant", "content": "How may I help you?"}]
 
-for entry in st.session_state.conversation:
-    with st.chat_message(entry["role"]):
-        st.write(entry["sql"])
+st.session_state.messages.append({"role": "user", "content": user_input})
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.write(message["content"])
 
 
 # for message in st.session_state.messages:
