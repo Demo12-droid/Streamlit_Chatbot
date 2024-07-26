@@ -198,7 +198,7 @@ for entry in st.session_state.messages:
         text_summary = content.get('text_summary', None)
         plot = content.get('plot', None)
         df = content.get('df', None) 
-        time_taken = content.get('time_taken', None)
+        time_taken = content.get('time_taken')
 
         with st.chat_message("assistant"):
             if df:
@@ -210,6 +210,8 @@ for entry in st.session_state.messages:
                     display_plot(plot)
                 except:
                     components.html(plot,height=430,scrolling=True)
+            st.write(f"<b>Time taken: {time_taken:.4f} seconds</b>", unsafe_allow_html=True)
+
 # if "messages" not in st.session_state.keys():
 #     st.session_state.messages = [{"role": "assistant", "content": "How may I help you?"}]
 
