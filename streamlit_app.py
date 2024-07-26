@@ -191,10 +191,9 @@ for entry in st.session_state.messages:
     content = entry.get('content', {})
 
     if role == 'user':
-        st.write(f"**User:** {content}")
+        with st.chat_message("User"):
+            st.write(content)
     elif role == 'assistant':
-        st.write("**Assistant:**")
-
         sql_query = content.get('sql', 'no SQL query')
         text_summary = content.get('text_summary', 'no summary')
         plot_html = content.get('plot', None)
