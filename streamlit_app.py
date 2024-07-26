@@ -47,10 +47,6 @@ def display_plot(plot_base64):
 # Streamlit app
 st.title("Chanakya")
 
-if 'conversation' not in st.session_state:
-    st.session_state['conversation'] = []
-
-
 user_input = st.chat_input("Ask a question...")
 
 st.sidebar.title("Options")
@@ -115,77 +111,6 @@ if user_input:
         }
     })
 
-# for entry in st.session_state.messages:
-#     content=entry["content"]
-#     ## st.markdown(f"<b style='color:#0B51A0;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
-#     # st.markdown(
-#     #     f"""
-#     #     <div style="text-align: right; margin-right: 10px;">
-#     #         <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-#     #             <b style="color:#0B51A0;">{entry['user_input']}</b>
-#     #         </span>
-#     #     </div>
-#     #     """, 
-#     #     unsafe_allow_html=True
-#     # )
-
-    
-#     # if entry['df']:
-#     #     with st.chat_message(message["role"]):
-
-#         # st.markdown(
-#         #     """
-#         #     <div style="margin: 10px 0;">
-#         #         <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-#         #             <b>Data:</b>
-#         #         </span>
-#         #     </div>
-#         #     """, 
-#         #     unsafe_allow_html=True
-#         # )
-#             # st.dataframe(entry['df'])  # Display the DataFrame using st.dataframe
-    
-#     if entry['text_summary']:
-#         # st.markdown(
-#         #     f"""
-#         #     <div style="margin: 10px 0;">
-#         #         <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-#         #             <b>Summary: </b><p>{entry['text_summary']}</p>
-#         #         </span>
-#         #     </div>
-#         #     """,
-#         #     # <div style="background-color: #f1f1f1; border-radius: 5px; padding: 10px;">
-#         #     # </div>
-#         #     # style="color:#0B51A0;"
-#         #     # """, 
-#         #     unsafe_allow_html=True
-#         # )
-#         with st.chat_message(message["role"]):
-#             entry["text_summary"]
-    
-#     if entry['plot']:
-#         st.markdown(
-#             """
-#             <div style="margin: 10px 0;">
-#                 <span style="background-color: #f1f1f1; border-radius: 5px; padding: 10px; display: inline-block;">
-#                     <b>Plot:</b>
-#                 </span>
-#             </div>
-#             """, 
-#             unsafe_allow_html=True
-#         )
-#         # st.write(type(entry['plot']))
-#         try:
-#             display_plot(entry['plot'])
-
-#         except:
-#             components.html(entry['plot'],height=430,scrolling=True)
-
-#     if entry['sql'] is not None and entry['df'] is None:
-#         with st.chat_message(message["role"]):
-#             st.write("No data is available for the given question.If data is available, please retry")
-#     # st.markdown(f"<b>Time taken: {entry['time_taken']:.4f} seconds</b>", unsafe_allow_html=True)
-
 for entry in st.session_state.messages:
     role = entry.get('role', 'unknown role')
     content = entry.get('content', {})
@@ -200,26 +125,18 @@ for entry in st.session_state.messages:
         df = content.get('df', None) 
         time_taken = content.get('time_taken')
 
-        with st.chat_message("assistant"):
-            if df:
-                st.dataframe(df)
-            if text_summary:
-                st.write(text_summary)
-            if plot:
-                try:
-                    display_plot(plot)
-                except:
-                    components.html(plot,height=430,scrolling=True)
-            st.write(f"<b>Time taken: {time_taken:.4f} seconds</b>", unsafe_allow_html=True)
-
-# if "messages" not in st.session_state.keys():
-#     st.session_state.messages = [{"role": "assistant", "content": "How may I help you?"}]
-
-# for message in st.session_state.messages:
-#     with st.chat_message(message["role"]):
-#         st.write(message["content"])
-
-
-# for message in st.session_state.messages:
-#     with st.chat_message(message["role"]):
-#         st.write(message["content"])
+        if sql is not None and df is None:
+            with st.chat_message("assistant"):
+                st.write("No data is available for the given question.If data is available, please retry")
+        else:            
+            with st.chat_message("assistant"):
+                if df:
+                    st.dataframe(df)
+                if text_summary:
+                    st.write(text_summary)
+                if plot:
+                    try:
+                        display_plot(plot)
+                    except:
+                        components.html(plot,height=430,scrolling=True)
+                st.write(f"<b>Time taken: {time_taken:.4f} seconds</b>", unsafe_allow_html=True)
