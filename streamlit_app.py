@@ -1,4 +1,4 @@
-import streamlit as st
+ryimport streamlit as st
 import requests
 import json
 import base64
