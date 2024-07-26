@@ -40,10 +40,13 @@ def get_response(user_input,show_plot,toggle_option):
        return None, None, None, None, time_taken
     
 def display_plot(plot_base64):
-    if plot_base64:
-        plot_data = base64.b64decode(plot_base64)
-        plot_image = Image.open(BytesIO(plot_data))
-        st.image(plot_image)
+    try:
+        if plot_base64:
+            plot_data = base64.b64decode(plot_base64)
+            plot_image = Image.open(BytesIO(plot_data))
+            st.image(plot_image)
+        except:
+            
 
 # Streamlit app
 st.title("Chanakya")
@@ -172,6 +175,7 @@ for entry in st.session_state.conversation:
             """, 
             unsafe_allow_html=True
         )
+        st.write(type(entry['plot'])
         try:
             folium_static(entry['plot'])
         except:
