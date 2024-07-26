@@ -108,15 +108,18 @@ if user_input:
     # df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
     st.session_state.messages.append({
         "role": "assistant",
-        "user_input": user_input,
-        "sql": sql,
-        "df": df,
-        "text_summary": text_summary,
-        "plot": plot,
-        "time_taken": time_taken 
+        "content": {
+            "user_input": user_input,
+            "sql": sql,
+            "df": df,
+            "text_summary": text_summary,
+            "plot": plot,
+            "time_taken": time_taken 
+        }
     })
 
 for entry in st.session_state.messages:
+    content=entry["content"]
     ## st.markdown(f"<b style='color:#0B51A0;'>You: {entry['user_input']}</b> ", unsafe_allow_html=True)
     # st.markdown(
     #     f"""
