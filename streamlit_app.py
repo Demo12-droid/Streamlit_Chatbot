@@ -115,6 +115,7 @@ if user_input:
     })
 
 for entry in st.session_state.messages:
+    st.write(entry)
     role = entry.get('role', 'unknown role')
     content = entry.get('content', {})
 
