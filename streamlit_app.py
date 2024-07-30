@@ -105,7 +105,6 @@ if user_input:
     st.session_state.messages.append({
         "role": "assistant",
         "content": {
-            "user_input": user_input,
             "sql": sql,
             "df": df,
             "text_summary": text_summary,
@@ -114,8 +113,8 @@ if user_input:
         }
     })
 
+st.write(st.session_state.messages)
 for entry in st.session_state.messages:
-    st.write(entry)
     role = entry.get('role', 'unknown role')
     content = entry.get('content', {})
 
