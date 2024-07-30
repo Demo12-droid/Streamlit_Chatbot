@@ -17,7 +17,6 @@ def get_response(user_input,show_plot,toggle_option):
     headers = {'Content-Type': 'application/json'}
     payload = {
         'username': 'test3',
-        'mode': 'ASK',
         'question': user_input,
         'table_key': toggle_option,
         'show_plot': show_plot,
