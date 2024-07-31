@@ -13,64 +13,64 @@ from streamlit_float import *
 float_init(theme=True, include_unstable_primary=False)
 
 users_db = {
-    "user1": {"password": "pass1", "session_ids": ["session1", "session2"]},
-    "user2": {"password": "pass2", "session_ids": []},
+	"user1": {"password": "pass1", "session_ids": ["session1", "session2"]},
+	"user2": {"password": "pass2", "session_ids": []},
 }
 
 def get_response(user_input,show_plot,toggle_option):
-    url = 'http://molly-grateful-hippo.ngrok-free.app/chat/chatbot/'
-    headers = {'Content-Type': 'application/json'}
-    payload = {
-        'username': 'test3',
-        'question': user_input,
-        'table_key': toggle_option,
-        'show_plot': show_plot,
-        'session_id': 'test'
-    }
+	url = 'http://molly-grateful-hippo.ngrok-free.app/chat/chatbot/'
+	headers = {'Content-Type': 'application/json'}
+	payload = {
+		'username': 'test3',
+		'question': user_input,
+		'table_key': toggle_option,
+		'show_plot': show_plot,
+		'session_id': 'test'
+	}
 
-    start_time = time.time()
-    response = requests.post(url, headers=headers, data=json.dumps(payload))
-    end_time = time.time()
-
-    time_taken = end_time - start_time  
-    
-    if response.status_code == 200:
-       data = response.json().get('data', {})
-       return data.get('sql', 'No SQL query generated'), data.get('df', 'No data frame generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),time_taken
-    else:
-       return None, None, None, None, time_taken
+	start_time = time.time()
+	response = requests.post(url, headers=headers, data=json.dumps(payload))
+	end_time = time.time()
+	
+	time_taken = end_time - start_time  
+	
+	if response.status_code == 200:
+	       data = response.json().get('data', {})
+	       return data.get('sql', 'No SQL query generated'), data.get('df', 'No data frame generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),time_taken
+	else:
+		return None, None, None, None, time_taken
 
 def get_history(username,session_id):
-    url = 'http://molly-grateful-hippo.ngrok-free.app/chat/session_info/'
-    headers = {'Content-Type': 'application/json'}
-    payload = {
-        'username': username,
-        'session_id': session_id,
-    }
+	url = 'http://molly-grateful-hippo.ngrok-free.app/chat/session_info/'
+	headers = {'Content-Type': 'application/json'}
+	payload = {
+		'username': username,
+		'session_id': session_id,
+	}
 
-    response = requests.post(url, headers=headers, data=json.dumps(payload))
-    
-    if response.status_code == 200:
-       data = response.json().get('data', {})
-       return data.get('data', 'No_recent_session_history')
-    else:
-       return None
+	response = requests.post(url, headers=headers, data=json.dumps(payload))
+	
+	if response.status_code == 200:
+		data = response.json().get('data', {})
+		return data.get('data', 'No_recent_session_history')
+	else:
+		return None
 
 def save_session_id(username,session_id):
-    url = 'http://molly-grateful-hippo.ngrok-free.app/chat/save_session_id/'
-    headers = {'Content-Type': 'application/json'}
-    payload = {
-        'username': username,
-        'session_id': session_id,
-    }
+	url = 'http://molly-grateful-hippo.ngrok-free.app/chat/save_session_id/'
+	headers = {'Content-Type': 'application/json'}
+	payload = {
+		'username': username,
+		'session_id': session_id,
+	}
 
-    response = requests.post(url, headers=headers, data=json.dumps(payload))
-
-    
-    if response.status_code == 200:
-       return "Sucessful"
-    else:
-       return "error saving session credentials"
+	response = requests.post(url, headers=headers, data=json.dumps(payload))
+	
+	
+	if response.status_code == 200:
+		return "Sucessful"
+	else:
+		return "error saving session credentials"
 def authenticate(username, password):
 	user = users_db.get(username)
 	if user and user["password"] == password:
@@ -79,19 +79,19 @@ def authenticate(username, password):
 
 # Function to retrieve session IDs
 def get_session_ids(username):
-    url = 'http://molly-grateful-hippo.ngrok-free.app/chat/get_session_ids/'
-    headers = {'Content-Type': 'application/json'}
-    payload = {
-        "username": username,
-    }
+	url = 'http://molly-grateful-hippo.ngrok-free.app/chat/get_session_ids/'
+	headers = {'Content-Type': 'application/json'}
+	payload = {
+		"username": username,
+	}
 
-    response = requests.post(url, headers=headers, data=json.dumps(payload))
-
-    if response.status_code == 200:
-       data = response.json().get('data', {})
-       return data
-    else:
-       return None
+	response = requests.post(url, headers=headers, data=json.dumps(payload))
+	
+	if response.status_code == 200:
+		data = response.json().get('data', {})
+		return data
+	else:
+		return None
 
 # Function to generate a new session ID
 def generate_new_session_id(username):
@@ -105,16 +105,16 @@ def logout():
 	st.session_state.selected_option = None
 
 def display_plot(plot_base64):
-    try:
-        #plot_base64
-        plot_data = base64.b64decode(plot_base64)
-        plot_image = Image.open(BytesIO(plot_data))
-        st.image(plot_image)
-    except:
-        #indicator type
-        img_bytes.seek(0)
-        img = Image.open(img_bytes)
-        st.image(img)
+	try:
+		#plot_base64
+		plot_data = base64.b64decode(plot_base64)
+		plot_image = Image.open(BytesIO(plot_data))
+		st.image(plot_image)
+	except:
+		#indicator type
+		img_bytes.seek(0)
+		img = Image.open(img_bytes)
+		st.image(img)
 
 
 if 'logged_in' not in st.session_state:
