@@ -183,7 +183,7 @@ if st.session_state.logged_in:
 
 
 	st.sidebar.header("Database options")
-	toggle_option = st.sidebar.selectbox('Choose a Database:',['congestion', 'toll_plaza_data']
+	toggle_option = st.sidebar.selectbox('Choose a Database:',['congestion', 'toll_plaza_data'])
 	
 	st.sidebar.header("Display Options")
 	show_plot = st.sidebar.checkbox("Plot",value=True)
