@@ -18,15 +18,15 @@ users_db = {
 	"user3": {"password": "pass3"},
 }
 
-def get_response(user_input,show_plot,toggle_option):
+def get_response(user_input,show_plot,toggle_option,username,session_id):
 	url = 'http://molly-grateful-hippo.ngrok-free.app/chat/chatbot/'
 	headers = {'Content-Type': 'application/json'}
 	payload = {
-		'username': 'test3',
+		'username': username,
 		'question': user_input,
 		'table_key': toggle_option,
 		'show_plot': show_plot,
-		'session_id': 'test'
+		'session_id': session-id
 	}
 
 	start_time = time.time()
@@ -255,7 +255,7 @@ if st.session_state.logged_in:
 
 	if user_input:
 		st.session_state.messages.append({"role": "user", "content": user_input})
-		sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
+		sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option,st.session_state.username,st.session_state.session_id)
 
 		# df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
 		st.session_state.messages.append({
