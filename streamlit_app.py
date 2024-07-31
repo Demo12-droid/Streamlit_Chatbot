@@ -37,9 +37,9 @@ def get_response(user_input,show_plot,toggle_option,username,session_id):
 	
 	if response.status_code == 200:
 	       data = response.json().get('data', {})
-	       return data.get('sql', 'No SQL query generated'), data.get('df', 'No data frame generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),time_taken
+	       return data.get('sql', 'No SQL query generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),time_taken
 	else:
-		return None, None, None, None, time_taken
+		return None, None, None, time_taken
 
 def get_history(username,session_id):
 	url = 'http://molly-grateful-hippo.ngrok-free.app/chat/session_info/'
@@ -255,14 +255,12 @@ if st.session_state.logged_in:
 
 	if user_input:
 		st.session_state.messages.append({"role": "user", "content": user_input})
-		sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option,st.session_state.username,st.session_state.session_id)
+		sql, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option,st.session_state.username,st.session_state.session_id)
 
-		# df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
 		st.session_state.messages.append({
 		    "role": "assistant",
 		    "content": {
 			"sql": sql,
-			"df": df,
 			"text_summary": text_summary,
 			"plot": plot,
 			"time_taken": time_taken 
@@ -279,21 +277,14 @@ if st.session_state.logged_in:
 			sql_query = content.get('sql', None)
 			text_summary = content.get('text_summary', None)
 			plot = content.get('plot', None)
-			df = content.get('df', None) 
 			time_taken = content.get('time_taken')
 	    
-			if sql_query is not None and df is None:
-				with st.chat_message("assistant"):
-					st.write("No data is available for the given question.If data is available, please retry")
-			else:            
-				with st.chat_message("assistant"):
-					if df:
-						st.dataframe(df)
-					if text_summary:
-						st.write(text_summary)
-					if plot:
-						try:
-							display_plot(plot)
-						except:
-							components.html(plot,height=390,scrolling=True)
-				st.write(f"<b>Time taken: {time_taken:.4f} seconds</b>", unsafe_allow_html=True)
+			with st.chat_message("assistant"):
+				if text_summary:
+					st.write(text_summary)
+				if plot:
+					try:
+						display_plot(plot)
+					except:
+						components.html(plot,height=390,scrolling=True)
+			st.write(f"<b>Time taken: {time_taken:.4f} seconds</b>", unsafe_allow_html=True)
