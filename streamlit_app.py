@@ -251,7 +251,7 @@ if st.session_state.logged_in:
 		role = entry.get('role', 'unknown role')
 		content = entry.get('content', {})
 		if role =='user':
-			with st.chat_messgae("User"):
+			with st.chat_message("User"):
 				st.write(content)
 		elif role == 'assistant':
 			sql_query = content.get('sql', None)
