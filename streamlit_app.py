@@ -174,10 +174,10 @@ if st.session_state.logged_in:
 				new_session_id = generate_new_session_id(st.session_state.username)
 				st.session_state.session_id = new_session_id
 				st.write(f"New Session ID: {new_session_id}")
+				st.session_state.session_ids.append(new_session_id)
 				message=save_session_id(st.session_state.username,st.session_state.session_id)
 				st.write(message)
 				
-				st.session_state.session_ids = get_session_ids(st.session_state.username)   #get session_ids
 				st.session_state.session_history = get_history(st.session_state.username, st.session_state.session_id)    #get new_session
 				
 				st.session_state.show_message_for_saved_credentials = False
@@ -185,7 +185,7 @@ if st.session_state.logged_in:
 		else:
 			if session_option in session_ids:
 				st.session_state.session_id = session_option
-				st.session_state.session_history = get_history(st.session_state.username, session_option)
+				# st.session_state.session_history = get_history(st.session_state.username, session_option)   #get history
 	else:
 		if st.session_state.show_message:
 			st.write("No previous sessions found. Creating a new session...")
