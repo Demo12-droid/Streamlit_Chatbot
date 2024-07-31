@@ -263,7 +263,7 @@ if st.session_state.logged_in:
 			if sql_query is not None and df is None:
 				with st.chat_message("assistant"):
 					st.write("No data is available for the given question.If data is available, please retry")
-			els_mee:            
+			else:            
 				with st.chatssage("assistant"):
 					if df:
 						st.dataframe(df)
