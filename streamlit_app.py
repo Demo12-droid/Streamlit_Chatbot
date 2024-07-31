@@ -13,8 +13,9 @@ from streamlit_float import *
 float_init(theme=True, include_unstable_primary=False)
 
 users_db = {
-	"user1": {"password": "pass1", "session_ids": ["session1", "session2"]},
-	"user2": {"password": "pass2", "session_ids": []},
+	"user1": {"password": "pass1"},
+	"user2": {"password": "pass2"},
+	"user3": {"password": "pass3"},
 }
 
 def get_response(user_input,show_plot,toggle_option):
