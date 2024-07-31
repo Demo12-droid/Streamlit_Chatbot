@@ -194,34 +194,34 @@ if st.session_state.logged_in:
     
 	if toggle_option == "congestion":
 		st.markdown("<b style='color:#0B51A0;'>Try asking the following questions: </b>", unsafe_allow_html=True)
-			if st.button("What is the average extent in jan 2024", type="secondary"):
-				user_input = "What is the average extent in jan 2024"    
-			if st.button("What is the range of the data", type="secondary"):
-				user_input="What is the range of the data"
-			if st.button("What are the details of the highest extent", type="secondary"):
-				user_input="What are the details of the highest extent"
-			if st.button("What has higher average extent jan 2024 or feb 2024", type="secondary"):
-				user_input="What has higher average extent jan 2024 or feb 2024"
-			if st.button("What are the congested locations on the CBD 1 corridor", type="secondary"):
-				user_input="What are the congested locations on the CBD 1 corridor"
-			if st.button("What locations were congested in february", type="secondary"):
-				user_input="What locations were congested in february"
-			if st.button("What are the congested locations in the Koramangala 2nd Block area", type="secondary"):
-				user_input="What are the congested locations in the Koramangala 2nd Block area"
+		if st.button("What is the average extent in jan 2024", type="secondary"):
+			user_input = "What is the average extent in jan 2024"    
+		if st.button("What is the range of the data", type="secondary"):
+			user_input="What is the range of the data"
+		if st.button("What are the details of the highest extent", type="secondary"):
+			user_input="What are the details of the highest extent"
+		if st.button("What has higher average extent jan 2024 or feb 2024", type="secondary"):
+			user_input="What has higher average extent jan 2024 or feb 2024"
+		if st.button("What are the congested locations on the CBD 1 corridor", type="secondary"):
+			user_input="What are the congested locations on the CBD 1 corridor"
+		if st.button("What locations were congested in february", type="secondary"):
+			user_input="What locations were congested in february"
+		if st.button("What are the congested locations in the Koramangala 2nd Block area", type="secondary"):
+			user_input="What are the congested locations in the Koramangala 2nd Block area"
 	
 
 	if toggle_option == "toll_plaza_data":
 		st.markdown("<b style=\"color:#0B51A0;\">Try asking the following questions:</b>", unsafe_allow_html=True)
-			if st.button("What is the total number of vehicles of type MAV in Jan 2024", type="secondary"):
-				user_input="What is the total number of vehicles of type MAV in Jan 2024"
-			if st.button("What is the time range of the data?", type="secondary"):
-				user_input="What is the time range of the data?"
-			if st.button("What is the revenue of different vehicle classes?", type="secondary"):
-				user_input="What is the revenue of different vehicle classes?"
-			if st.button("What is the revenue from different vehicle classes in Feb 2024", type="secondary"):
-				user_input="What is the revenue from different vehicle classes in Feb 2024"
-			if st.button("What is the total number of vehicles of each vehicle class in Jan 2024", type="secondary"):
-				user_input="What is the total number of vehicles in each vehicle class in Jan 2024"
+		if st.button("What is the total number of vehicles of type MAV in Jan 2024", type="secondary"):
+			user_input="What is the total number of vehicles of type MAV in Jan 2024"
+		if st.button("What is the time range of the data?", type="secondary"):
+			user_input="What is the time range of the data?"
+		if st.button("What is the revenue of different vehicle classes?", type="secondary"):
+			user_input="What is the revenue of different vehicle classes?"
+		if st.button("What is the revenue from different vehicle classes in Feb 2024", type="secondary"):
+			user_input="What is the revenue from different vehicle classes in Feb 2024"
+		if st.button("What is the total number of vehicles of each vehicle class in Jan 2024", type="secondary"):
+			user_input="What is the total number of vehicles in each vehicle class in Jan 2024"
 
 	user_input = st.chat_input("Ask a question...")
 
