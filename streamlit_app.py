@@ -126,19 +126,31 @@ if 'show_message' not in st.session_state:
 	st.session_state.show_message = True
 if 'show_message_for_saved_credentials' not in st.session_state:
 	st.session_state.show_message_for_saved_credentials = True
+if 'session_ids' not in st.session_state:
+	st.session_state.session_ids = []
+if 'session_history' not in st.session_state:
+	st.session_state.session_history = None
+if 'session_id' not in st.session_state:
+	st.session_state.session_id = None
 
 # UI for login
 if not st.session_state.logged_in:
 	st.title("Login")
 	username = st.text_input("Username")
 	password = st.text_input("Password", type="password")
-	if st.button("Login"):	
+	if st.button("Login"):
 		if authenticate(username, password):
-			if st.session_state.show_message == True:
-				st.session_state.logged_in = True
-				st.session_state.username = username
-				st.session_state.show_message = False  # Ensure the message is hidden after login
-				st.rerun()
+			st.session_state.logged_in = True
+			st.session_state.username = username
+			
+			# Fetch session ids and history only once on login
+			if not st.session_state.session_ids:
+				st.session_state.session_ids = get_session_ids(st.session_state.username)
+			if st.session_state.session_ids and not st.session_state.session_history:
+				first_session_id = st.session_state.session_ids[0] if st.session_state.session_ids else None
+				st.session_state.session_history = get_history(st.session_state.username, first_session_id)
+			st.rerun()
+				
 		else:
 			st.error("Invalid username or password")
 
@@ -150,7 +162,7 @@ if st.session_state.logged_in:
 	st.sidebar.title("Options")
 	
 	# Retrieve previous session IDs
-	session_ids = get_session_ids(st.session_state.username)
+	session_ids = st.session_state.session_ids
 	if session_ids:
 		st.sidebar.header("Select Session")
 		array = session_ids + ["Create New Session"] 
@@ -164,11 +176,16 @@ if st.session_state.logged_in:
 				st.write(f"New Session ID: {new_session_id}")
 				message=save_session_id(st.session_state.username,st.session_state.session_id)
 				st.write(message)
+				
+				st.session_state.session_ids = get_session_ids(st.session_state.username)   #get session_ids
+				st.session_state.session_history = get_history(st.session_state.username, st.session_state.session_id)    #get new_session
+				
 				st.session_state.show_message_for_saved_credentials = False
 				st.rerun()
 		else:
 			if session_option in session_ids:
 				st.session_state.session_id = session_option
+				st.session_state.session_history = fetch_history(st.session_state.username, session_option)
 	else:
 		if st.session_state.show_message:
 			st.write("No previous sessions found. Creating a new session...")
@@ -177,6 +194,11 @@ if st.session_state.logged_in:
 			st.write(f"New Session ID: {new_session_id}")
 			message=save_session_id(st.session_state.username,st.session_state.session_id)
 			st.write(message)
+
+			st.session_state.session_ids = get_session_ids(st.session_state.username)   #get session_ids
+			st.session_state.session_history = get_history(st.session_state.username, st.session_state.session_id)    #get new_session
+				
+			
 			st.session_state.show_message_for_saved_credentials = False
 			st.rerun()
 			# Hide the message after displaying
@@ -226,7 +248,7 @@ if st.session_state.logged_in:
 
 	user_input = st.chat_input("Ask a question...")
 
-	st.session_state.messages = get_history(st.session_state.username,st.session_state.session_id)
+	st.session_state.messages = st.session_state.session_history
 
 
 	if 'messages' not in st.session_state:
