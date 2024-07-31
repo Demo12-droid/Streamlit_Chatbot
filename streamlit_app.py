@@ -250,7 +250,6 @@ if st.session_state.logged_in:
 	for entry in st.session_state.messages:
 	        role = entry.get('role', 'unknown role')
 	        content = entry.get('content', {})
-	    
 		if role == 'user':
 		        with st.chat_message("User"):
 				st.write(content)
