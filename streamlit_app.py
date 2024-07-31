@@ -248,8 +248,8 @@ if st.session_state.logged_in:
 		})
 
 	for entry in st.session_state.messages:
-	        role = entry.get('role', 'unknown role')
-	        content = entry.get('content', {})
+		role = entry.get('role', 'unknown role')
+		content = entry.get('content', {})
 		if role =='user':
 			with st.chat_messgae("User"):
 				st.write(content)
