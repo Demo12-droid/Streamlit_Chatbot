@@ -264,7 +264,7 @@ if st.session_state.logged_in:
 				with st.chat_message("assistant"):
 					st.write("No data is available for the given question.If data is available, please retry")
 			else:            
-				with st.chatssage("assistant"):
+				with st.chat_message("assistant"):
 					if df:
 						st.dataframe(df)
 					if text_summary:
