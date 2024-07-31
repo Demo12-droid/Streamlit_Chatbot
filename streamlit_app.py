@@ -185,7 +185,7 @@ if st.session_state.logged_in:
 		else:
 			if session_option in session_ids:
 				st.session_state.session_id = session_option
-				st.session_state.session_history = fetch_history(st.session_state.username, session_option)
+				st.session_state.session_history = get_history(st.session_state.username, session_option)
 	else:
 		if st.session_state.show_message:
 			st.write("No previous sessions found. Creating a new session...")
