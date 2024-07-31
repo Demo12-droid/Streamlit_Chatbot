@@ -214,7 +214,7 @@ if st.session_state.logged_in:
 	if st.sidebar.button("Logout"):
 		logout()
 		st.rerun()
-    	user_input = st.chat_input("Ask a question...")
+	user_input = st.chat_input("Ask a question...")
 
 	if toggle_option == "congestion":
 		st.markdown("<b style='color:#0B51A0;'>Try asking the following questions: </b>", unsafe_allow_html=True)
