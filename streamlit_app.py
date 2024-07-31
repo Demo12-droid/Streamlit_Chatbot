@@ -143,7 +143,7 @@ if not st.session_state.logged_in:
 
 
 if st.session_state.logged_in:
-    st.title("Chanakya")
+	st.title("Chanakya")
 	
 	# Sidebar
 	st.sidebar.title("Options")
@@ -182,97 +182,97 @@ if st.session_state.logged_in:
 			st.session_state.show_message = False
 
 
-    st.sidebar.header("Database options")
-    toggle_option = st.sidebar.selectbox('Choose a Database:',['congestion', 'toll_plaza_data']
+	st.sidebar.header("Database options")
+	toggle_option = st.sidebar.selectbox('Choose a Database:',['congestion', 'toll_plaza_data']
+	
+	st.sidebar.header("Display Options")
+	show_plot = st.sidebar.checkbox("Plot",value=True)
     
-    st.sidebar.header("Display Options")
-    show_plot = st.sidebar.checkbox("Plot",value=True)
+	if st.sidebar.button("Logout"):
+		logout()
+		st.rerun()
     
-    if st.sidebar.button("Logout"):
-        logout()
-        st.rerun()
-    
-    if toggle_option == "congestion":
-        st.markdown("<b style='color:#0B51A0;'>Try asking the following questions: </b>", unsafe_allow_html=True)
-        if st.button("What is the average extent in jan 2024", type="secondary"):
-            user_input = "What is the average extent in jan 2024"    
-        if st.button("What is the range of the data", type="secondary"):
-            user_input="What is the range of the data"
-        if st.button("What are the details of the highest extent", type="secondary"):
-            user_input="What are the details of the highest extent"
-        if st.button("What has higher average extent jan 2024 or feb 2024", type="secondary"):
-            user_input="What has higher average extent jan 2024 or feb 2024"
-        if st.button("What are the congested locations on the CBD 1 corridor", type="secondary"):
-            user_input="What are the congested locations on the CBD 1 corridor"
-        if st.button("What locations were congested in february", type="secondary"):
-            user_input="What locations were congested in february"
-        if st.button("What are the congested locations in the Koramangala 2nd Block area", type="secondary"):
-            user_input="What are the congested locations in the Koramangala 2nd Block area"
-    
-    
-    if toggle_option == "toll_plaza_data":
-        st.markdown("<b style=\"color:#0B51A0;\">Try asking the following questions:</b>", unsafe_allow_html=True)
-        if st.button("What is the total number of vehicles of type MAV in Jan 2024", type="secondary"):
-            user_input="What is the total number of vehicles of type MAV in Jan 2024"
-        if st.button("What is the time range of the data?", type="secondary"):
-            user_input="What is the time range of the data?"
-        if st.button("What is the revenue of different vehicle classes?", type="secondary"):
-            user_input="What is the revenue of different vehicle classes?"
-        if st.button("What is the revenue from different vehicle classes in Feb 2024", type="secondary"):
-            user_input="What is the revenue from different vehicle classes in Feb 2024"
-        if st.button("What is the total number of vehicles of each vehicle class in Jan 2024", type="secondary"):
-            user_input="What is the total number of vehicles in each vehicle class in Jan 2024"
+	if toggle_option == "congestion":
+		st.markdown("<b style='color:#0B51A0;'>Try asking the following questions: </b>", unsafe_allow_html=True)
+			if st.button("What is the average extent in jan 2024", type="secondary"):
+				user_input = "What is the average extent in jan 2024"    
+			if st.button("What is the range of the data", type="secondary"):
+				user_input="What is the range of the data"
+			if st.button("What are the details of the highest extent", type="secondary"):
+				user_input="What are the details of the highest extent"
+			if st.button("What has higher average extent jan 2024 or feb 2024", type="secondary"):
+				user_input="What has higher average extent jan 2024 or feb 2024"
+			if st.button("What are the congested locations on the CBD 1 corridor", type="secondary"):
+				user_input="What are the congested locations on the CBD 1 corridor"
+			if st.button("What locations were congested in february", type="secondary"):
+				user_input="What locations were congested in february"
+			if st.button("What are the congested locations in the Koramangala 2nd Block area", type="secondary"):
+				user_input="What are the congested locations in the Koramangala 2nd Block area"
+	
 
-    user_input = st.chat_input("Ask a question...")
+	if toggle_option == "toll_plaza_data":
+		st.markdown("<b style=\"color:#0B51A0;\">Try asking the following questions:</b>", unsafe_allow_html=True)
+			if st.button("What is the total number of vehicles of type MAV in Jan 2024", type="secondary"):
+				user_input="What is the total number of vehicles of type MAV in Jan 2024"
+			if st.button("What is the time range of the data?", type="secondary"):
+				user_input="What is the time range of the data?"
+			if st.button("What is the revenue of different vehicle classes?", type="secondary"):
+				user_input="What is the revenue of different vehicle classes?"
+			if st.button("What is the revenue from different vehicle classes in Feb 2024", type="secondary"):
+				user_input="What is the revenue from different vehicle classes in Feb 2024"
+			if st.button("What is the total number of vehicles of each vehicle class in Jan 2024", type="secondary"):
+				user_input="What is the total number of vehicles in each vehicle class in Jan 2024"
+
+	user_input = st.chat_input("Ask a question...")
 
 	st.session_state.messages = get_history(st.session_state.username,st.session_state.session_id)
 
 
-    if 'messages' not in st.session_state:
-        st.session_state.messages = []
+	if 'messages' not in st.session_state:
+		st.session_state.messages = []
 
-    if user_input:
-        st.session_state.messages.append({"role": "user", "content": user_input})
-        sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
-    
-        # df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
-        st.session_state.messages.append({
-            "role": "assistant",
-            "content": {
-                "sql": sql,
-                "df": df,
-                "text_summary": text_summary,
-                "plot": plot,
-                "time_taken": time_taken 
-            }
-        })
+	if user_input:
+		st.session_state.messages.append({"role": "user", "content": user_input})
+		sql, df, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option)
 
-    for entry in st.session_state.messages:
-        role = entry.get('role', 'unknown role')
-        content = entry.get('content', {})
-    
-        if role == 'user':
-            with st.chat_message("User"):
-                st.write(content)
-        elif role == 'assistant':
-            sql_query = content.get('sql', None)
-            text_summary = content.get('text_summary', None)
-            plot = content.get('plot', None)
-            df = content.get('df', None) 
-            time_taken = content.get('time_taken')
-    
-            if sql_query is not None and df is None:
-                with st.chat_message("assistant"):
-                    st.write("No data is available for the given question.If data is available, please retry")
-            else:            
-                with st.chat_message("assistant"):
-                    if df:
-                        st.dataframe(df)
-                    if text_summary:
-                        st.write(text_summary)
-                    if plot:
-                        try:
-                            display_plot(plot)
-                        except:
-                            components.html(plot,height=390,scrolling=True)
-                    st.write(f"<b>Time taken: {time_taken:.4f} seconds</b>", unsafe_allow_html=True)
+		# df = df.to_dict(orient='records') if isinstance(df, pd.DataFrame) else df
+		st.session_state.messages.append({
+		    "role": "assistant",
+		    "content": {
+			"sql": sql,
+			"df": df,
+			"text_summary": text_summary,
+			"plot": plot,
+			"time_taken": time_taken 
+		    }
+		})
+
+	for entry in st.session_state.messages:
+	        role = entry.get('role', 'unknown role')
+	        content = entry.get('content', {})
+	    
+	        if role == 'user':
+			with st.chat_message("User"):
+				st.write(content)
+	        elif role == 'assistant':
+			sql_query = content.get('sql', None)
+			text_summary = content.get('text_summary', None)
+			plot = content.get('plot', None)
+			df = content.get('df', None) 
+			time_taken = content.get('time_taken')
+	    
+			if sql_query is not None and df is None:
+				with st.chat_message("assistant"):
+					st.write("No data is available for the given question.If data is available, please retry")
+			els_mee:            
+				with st.chatssage("assistant"):
+					if df:
+						st.dataframe(df)
+					if text_summary:
+						st.write(text_summary)
+					if plot:
+						try:
+							display_plot(plot)
+						except:
+							components.html(plot,height=390,scrolling=True)
+				st.write(f"<b>Time taken: {time_taken:.4f} seconds</b>", unsafe_allow_html=True)
