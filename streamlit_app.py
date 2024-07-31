@@ -253,7 +253,7 @@ if st.session_state.logged_in:
 		if role =='user':
 			with st.chat_messgae("User"):
 				st.write(content)
-	        elif role == 'assistant':
+		elif role == 'assistant':
 			sql_query = content.get('sql', None)
 			text_summary = content.get('text_summary', None)
 			plot = content.get('plot', None)
