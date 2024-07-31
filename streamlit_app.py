@@ -26,7 +26,7 @@ def get_response(user_input,show_plot,toggle_option,username,session_id):
 		'question': user_input,
 		'table_key': toggle_option,
 		'show_plot': show_plot,
-		'session_id': session-id
+		'session_id': session_id
 	}
 
 	start_time = time.time()
