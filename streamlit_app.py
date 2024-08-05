@@ -115,7 +115,7 @@ def display_plot(plot,plot_type):
 			img = pio.from_json(json_string)
 			st.image(img)
 		except:
-			img_bytes.seek(0)
+			plot.seek(0)
 			img = Image.open(img_bytes)
 			# fig = pio.from_image(bytes_io)
 			st.image(img)
