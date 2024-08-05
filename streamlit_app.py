@@ -105,18 +105,19 @@ def logout():
 	st.session_state.logged_in = False
 	st.session_state.selected_option = None
 
-def display_plot(plot_base64):
+def display_plot(plot,plot_type):
 	try:
-		#plot_base64
+	if plot_type=='PIL Image':
 		plot_data = base64.b64decode(plot_base64)
 		plot_image = Image.open(BytesIO(plot_data))
 		st.image(plot_image)
-	except:
-		#indicator type
+	elif plot_type=='Plotly figure':
 		img_bytes.seek(0)
 		img = Image.open(img_bytes)
 		st.image(img)
-
+	elif plot_type='Folium Map':
+		data = bytes(binary_data)
+		components.html(plot,height=390,scrolling=True)		
 
 if 'logged_in' not in st.session_state:
 	st.session_state.logged_in = False
@@ -263,7 +264,7 @@ if st.session_state.logged_in:
 			"sql": sql,
 			"text_summary": text_summary,
 			"plot": plot,
-			"time_taken": time_taken 
+			"time_taken": time_taken
 		    }
 		})
 	if st.session_state.messages:
@@ -277,15 +278,13 @@ if st.session_state.logged_in:
 				sql_query = content.get('sql', None)
 				text_summary = content.get('text_summary', None)
 				plot = content.get('plot', None)
+				plot_type= content.get('plot_type',None)
 				time_taken = content.get('time_taken')
 	    
 				with st.chat_message("assistant"):
 					if text_summary:
 						st.write(text_summary)
 					if plot:
-						try:
-							display_plot(plot)
-						except:
-							components.html(plot,height=390,scrolling=True)
+						display_plot(plot,plot_type)
 				if time_taken:
 					st.write(f"<b>Time taken: {time_taken:.4f} seconds</b>", unsafe_allow_html=True)
