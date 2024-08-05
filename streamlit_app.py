@@ -274,7 +274,7 @@ if st.session_state.logged_in:
 			"time_taken": time_taken
 		    }
 		})
-		st.write(session_state.messages)
+		st.write(st.session_state.messages)
 	if st.session_state.messages:
 		for entry in st.session_state.messages:
 			role = entry.get('role', 'unknown role')
