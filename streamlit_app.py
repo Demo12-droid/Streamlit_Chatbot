@@ -115,8 +115,10 @@ def display_plot(plot,plot_type):
 		img = Image.open(img_bytes)
 		st.image(img)
 	elif plot_type=='Folium Map':
-		data = bytes(binary_data)
-		components.html(plot,height=390,scrolling=True)		
+		plot = bytes(plot)
+		components.html(plot,height=390,scrolling=True)
+	else:
+		pass
 
 if 'logged_in' not in st.session_state:
 	st.session_state.logged_in = False
