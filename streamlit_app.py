@@ -116,7 +116,7 @@ def display_plot(plot,plot_type):
 			img = pio.from_json(json_string)
 			st.image(img)
 		except:
-			fig_dict = json.loads(json_str)
+			fig_dict = json.loads(plot)
 			img=pio.from_json(json.dumps(fig_dict))
 			st.image(img)
 
