@@ -114,7 +114,7 @@ def display_plot(plot,plot_type):
 		img_bytes.seek(0)
 		img = Image.open(img_bytes)
 		st.image(img)
-	elif plot_type='Folium Map':
+	elif plot_type=='Folium Map':
 		data = bytes(binary_data)
 		components.html(plot,height=390,scrolling=True)		
 
