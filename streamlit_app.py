@@ -106,7 +106,6 @@ def logout():
 	st.session_state.selected_option = None
 
 def display_plot(plot,plot_type):
-	try:
 	if plot_type=='PIL Image':
 		plot_data = base64.b64decode(plot_base64)
 		plot_image = Image.open(BytesIO(plot_data))
