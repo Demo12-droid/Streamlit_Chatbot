@@ -118,8 +118,8 @@ def display_plot(plot,plot_type):
 		except:
 			fig_dict = json.loads(plot)
 			img=pio.from_json(json.dumps(fig_dict))
-			st.image(img)
-
+			st.plotly_chart(img)
+			
 	elif plot_type=='Folium Map':
 		components.html(plot,height=390,scrolling=True)
 	else:
