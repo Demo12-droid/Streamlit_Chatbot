@@ -38,9 +38,9 @@ def get_response(user_input,show_plot,toggle_option,username,session_id):
 	
 	if response.status_code == 200:
 	       data = response.json().get('data', {})
-	       return data.get('sql', 'No SQL query generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),time_taken
+	       return data.get('sql', 'No SQL query generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),data.get('plot_type', 'No plot generated'),time_taken
 	else:
-		return None, None, None, time_taken
+		return None, None, None,None, time_taken
 
 def get_history(username,session_id):
 	url = 'http://molly-grateful-hippo.ngrok-free.app/chat/session_info/'
@@ -262,17 +262,19 @@ if st.session_state.logged_in:
 
 	if user_input:
 		st.session_state.messages.append({"role": "user", "content": user_input})
-		sql, text_summary, plot, time_taken = get_response(user_input,show_plot,toggle_option,st.session_state.username,st.session_state.session_id)
-
+		sql, text_summary, plot,plot_type, time_taken = get_response(user_input,show_plot,toggle_option,st.session_state.username,st.session_state.session_id)
+		
 		st.session_state.messages.append({
 		    "role": "assistant",
 		    "content": {
 			"sql": sql,
 			"text_summary": text_summary,
 			"plot": plot,
+			"plot_type":plot_type,
 			"time_taken": time_taken
 		    }
 		})
+		st.write(session_state.messages)
 	if st.session_state.messages:
 		for entry in st.session_state.messages:
 			role = entry.get('role', 'unknown role')
