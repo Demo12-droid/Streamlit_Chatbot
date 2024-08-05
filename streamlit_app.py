@@ -111,9 +111,13 @@ def display_plot(plot,plot_type):
 		plot_image = Image.open(BytesIO(plot_data))
 		st.image(plot_image)
 	elif plot_type=='Plotly figure':
-		img_bytes.seek(0)
-		img = Image.open(img_bytes)
-		st.image(img)
+		try:
+			img = pio.from_json(json_string)
+			st.image(img)
+		except:
+			img_bytes.seek(0)
+			img = Image.open(img_bytes)
+			st.image(img)
 	elif plot_type=='Folium Map':
 		components.html(plot,height=390,scrolling=True)
 	else:
