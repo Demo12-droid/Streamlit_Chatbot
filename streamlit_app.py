@@ -117,7 +117,7 @@ def display_plot(plot,plot_type):
 			st.image(img)
 		except:
 			# img=base64.b64encode(binary_data).decode('utf-8')
-			st.image(img)
+			st.image(plot)
 
 	elif plot_type=='Folium Map':
 		components.html(plot,height=390,scrolling=True)
