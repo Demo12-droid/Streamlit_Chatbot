@@ -110,12 +110,14 @@ def display_plot(plot,plot_type):
 		plot_data = base64.b64decode(plot_base64)
 		plot_image = Image.open(BytesIO(plot_data))
 		st.image(plot_image)
-	elif plot_type=='Plotly figure':
+	elif plot_type=='Plotly Figure':
 		try:
 			img = pio.from_json(json_string)
 			st.image(img)
 		except:
-			fig = pio.from_image(bytes_io)
+			img_bytes.seek(0)
+			img = Image.open(img_bytes)
+			# fig = pio.from_image(bytes_io)
 			st.image(img)
 
 	elif plot_type=='Folium Map':
