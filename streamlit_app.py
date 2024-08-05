@@ -114,7 +114,7 @@ def display_plot(plot,plot_type):
 	elif plot_type=='Plotly Figure':
 		try:
 			img = pio.from_json(json_string)
-			st.image(img)
+			st.plotly_chart(img)
 		except:
 			fig_dict = json.loads(plot)
 			img=pio.from_json(json.dumps(fig_dict))
