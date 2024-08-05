@@ -116,8 +116,9 @@ def display_plot(plot,plot_type):
 			img = pio.from_json(json_string)
 			st.image(img)
 		except:
-			# img=base64.b64encode(binary_data).decode('utf-8')
-			st.image(plot)
+			fig_dict = json.loads(json_str)
+			img=pio.from_json(json.dumps(fig_dict))
+			st.image(img)
 
 	elif plot_type=='Folium Map':
 		components.html(plot,height=390,scrolling=True)
