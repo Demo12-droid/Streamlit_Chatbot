@@ -4,6 +4,7 @@ import json
 import base64
 from io import BytesIO
 from PIL import Image
+import plotly.io as pio
 # from chatbot_backend.chat.main import run_code
 import pandas as pd
 import time
