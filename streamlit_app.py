@@ -156,6 +156,8 @@ if not st.session_state.logged_in:
 			if st.session_state.session_ids and not st.session_state.session_history:
 				first_session_id = st.session_state.session_ids[0] if st.session_state.session_ids else None
 				st.session_state.session_history = get_history(st.session_state.username, first_session_id)
+			st.write(st.session_state.session_ids)
+
 			st.rerun()
 				
 		else:
@@ -167,7 +169,7 @@ if st.session_state.logged_in:
 	
 	# Sidebar
 	st.sidebar.title("Options")
-	
+	st.write(st.session_state.session_ids)
 	# Retrieve previous session IDs
 	session_ids = st.session_state.session_ids
 	if session_ids:
