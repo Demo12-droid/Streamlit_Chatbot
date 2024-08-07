@@ -133,8 +133,6 @@ if 'show_message' not in st.session_state:
 	st.session_state.show_message = True
 if 'show_message_for_saved_credentials' not in st.session_state:
 	st.session_state.show_message_for_saved_credentials = True
-if 'session_ids' not in st.session_state:
-	st.session_state.session_ids = []
 if 'session_history' not in st.session_state:
 	st.session_state.session_history = None
 if 'session_id' not in st.session_state:
@@ -149,6 +147,9 @@ if not st.session_state.logged_in:
 		if authenticate(username, password):
 			st.session_state.logged_in = True
 			st.session_state.username = username
+
+			if 'session_ids' not in st.session_state:
+				st.session_state.session_ids = []
 			
 			# Fetch session ids and history only once on login
 			if not st.session_state.session_ids:
@@ -156,7 +157,6 @@ if not st.session_state.logged_in:
 			if st.session_state.session_ids and not st.session_state.session_history:
 				first_session_id = st.session_state.session_ids[0] if st.session_state.session_ids else None
 				st.session_state.session_history = get_history(st.session_state.username, first_session_id)
-			x=st.session_state.session_ids
 
 			st.rerun()
 				
@@ -169,7 +169,6 @@ if st.session_state.logged_in:
 	
 	# Sidebar
 	st.sidebar.title("Options")
-	st.write(x)
 	st.write(st.session_state.session_ids)
 	# Retrieve previous session IDs
 	session_ids = st.session_state.session_ids
