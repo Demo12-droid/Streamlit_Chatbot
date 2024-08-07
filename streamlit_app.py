@@ -17,6 +17,7 @@ users_db = {
 	"user1": {"password": "pass1"},
 	"user2": {"password": "pass2"},
 	"user3": {"password": "pass3"},
+	"user4": {"password": "pass4"},
 }
 
 def get_response(user_input,show_plot,toggle_option,username,session_id):
@@ -133,6 +134,8 @@ if 'show_message' not in st.session_state:
 	st.session_state.show_message = True
 if 'show_message_for_saved_credentials' not in st.session_state:
 	st.session_state.show_message_for_saved_credentials = True
+if 'session_ids' not in st.session_state:
+	st.session_state.session_ids = []
 if 'session_history' not in st.session_state:
 	st.session_state.session_history = None
 if 'session_id' not in st.session_state:
@@ -147,9 +150,6 @@ if not st.session_state.logged_in:
 		if authenticate(username, password):
 			st.session_state.logged_in = True
 			st.session_state.username = username
-
-			if 'session_ids' not in st.session_state:
-				st.session_state.session_ids = []
 			
 			# Fetch session ids and history only once on login
 			if not st.session_state.session_ids:
@@ -169,7 +169,7 @@ if st.session_state.logged_in:
 	
 	# Sidebar
 	st.sidebar.title("Options")
-	st.write(st.session_state.session_ids)
+
 	# Retrieve previous session IDs
 	session_ids = st.session_state.session_ids
 	if session_ids:
