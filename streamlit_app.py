@@ -133,8 +133,8 @@ if 'show_message' not in st.session_state:
 	st.session_state.show_message = True
 if 'show_message_for_saved_credentials' not in st.session_state:
 	st.session_state.show_message_for_saved_credentials = True
-# if 'session_ids' not in st.session_state:
-# 	st.session_state.session_ids = []
+if 'session_ids' not in st.session_state:
+	st.session_state.session_ids = []
 if 'session_history' not in st.session_state:
 	st.session_state.session_history = None
 if 'session_id' not in st.session_state:
