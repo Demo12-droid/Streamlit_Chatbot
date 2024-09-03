@@ -168,7 +168,7 @@ if st.session_state.logged_in:
 		
 	pages = ["Arcadis"]
 	logo_path = "AIRAVATLOGO.svg"
-	urls = {"Airavt.ai": "https://airavt.ai"}
+	urls = {"Arcadis": "https://airavt.ai"}
 	styles = {
 	    "nav": {
 	        "background-color": "royalblue",
