@@ -183,8 +183,8 @@ if st.session_state.logged_in:
 	    },
 	    "active": {
 	        "background-color": "white",
-	        "color": "var(--text-color)",
-	        "font-weight": "normal",
+	        "color": "black",
+	        "font-weight": "bold",
 	        "padding": "14px",
 	    }
 	}
