@@ -172,10 +172,13 @@ if st.session_state.logged_in:
 	styles = {
 	    "nav": {
 	        "background-color": "white",
-	        "justify-content": "left",
+	        # "justify-content": "left",
+		"justify-content": "center",  # Center align the items
+        	"padding": "0 20px",  # Add some padding on left and right
 	    },
 	    "img": {
 	        "padding-right": "14px",
+		"max-height": "50px",  # Control the logo size to fit the nav bar
 	    },
 	    "span": {
 	        "color": "black",
