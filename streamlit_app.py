@@ -10,6 +10,7 @@ import pandas as pd
 import time
 from streamlit_folium import folium_static
 from streamlit_float import *
+from streamlit_navigation_bar import st_navbar
 
 float_init(theme=True, include_unstable_primary=False)
 
@@ -164,6 +165,36 @@ if not st.session_state.logged_in:
 
 
 if st.session_state.logged_in:
+		
+	pages = ["Arcadis"]
+	logo_path = "AIRAVATLOGO.svg"
+	urls = {"Airavt.ai": "https://airavt.ai"}
+	styles = {
+	    "nav": {
+	        "background-color": "royalblue",
+	        "justify-content": "left",
+	    },
+	    "img": {
+	        "padding-right": "14px",
+	    },
+	    "span": {
+	        "color": "white",
+	        "padding": "14px",
+	    },
+	    "active": {
+	        "background-color": "white",
+	        "color": "var(--text-color)",
+	        "font-weight": "normal",
+	        "padding": "14px",
+	    }
+	}
+	
+	page = st_navbar(
+	    pages,
+	    logo_path=logo_path,
+	    urls=urls,
+	    styles=styles,
+	)
 	
 	st.title("Chanakya")
 	
