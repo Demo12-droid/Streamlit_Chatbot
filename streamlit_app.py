@@ -194,6 +194,7 @@ if st.session_state.logged_in:
 	    logo_path=logo_path,
 	    urls=urls,
 	    styles=styles,
+	    adjust=True,
 	)
 	
 	st.title("Chanakya")
