@@ -166,39 +166,39 @@ if not st.session_state.logged_in:
 
 if st.session_state.logged_in:
 		
-	pages = ["Arcadis"]
-	logo_path = "AIRAVATLOGO.svg"
-	urls = {"Arcadis": "https://airavt.ai"}
-	styles = {
-		"nav": {
-			"background-color": "white",
-	        	"justify-content": "left",
-	    	},
-	    	"img": {
-	        	"padding-right": "14px",
-	    	},
-	    	"span": {
-	        	"color": "black",
-		        "padding": "14px",
-			"font-size": "24px",
-			"font-weight": "bold",
-		},
-		"active": {
-		        "background-color": "white",
-		        "color": "black",
-	        	"font-weight": "bold",
-		        "font-size": "24px",  
-		        "padding": "14px",
-	    	}
-	}
+	# pages = ["Arcadis"]
+	# logo_path = "AIRAVATLOGO.svg"
+	# urls = {"Arcadis": "https://airavt.ai"}
+	# styles = {
+	# 	"nav": {
+	# 		"background-color": "white",
+	#         	"justify-content": "left",
+	#     	},
+	#     	"img": {
+	#         	"padding-right": "14px",
+	#     	},
+	#     	"span": {
+	#         	"color": "black",
+	# 	        "padding": "14px",
+	# 		"font-size": "24px",
+	# 		"font-weight": "bold",
+	# 	},
+	# 	"active": {
+	# 	        "background-color": "white",
+	# 	        "color": "black",
+	#         	"font-weight": "bold",
+	# 	        "font-size": "24px",  
+	# 	        "padding": "14px",
+	#     	}
+	# }
 	
-	page = st_navbar(
-	    pages,
-	    logo_path=logo_path,
-	    urls=urls,
-	    styles=styles,
-	    adjust=True,
-	)
+	# page = st_navbar(
+	#     pages,
+	#     logo_path=logo_path,
+	#     urls=urls,
+	#     styles=styles,
+	#     adjust=True,
+	# )
 	
 	st.title("Chanakya")
 	
