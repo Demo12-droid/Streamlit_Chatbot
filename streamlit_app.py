@@ -182,8 +182,7 @@ if st.session_state.logged_in:
 	        "padding": "14px",
 	    },
 		"font-size": "24px",
-		"font-weight": "bold",
-		},
+		"font-weight": "bold",},
 	    "active": {
 	        "background-color": "white",
 	        "color": "black",
