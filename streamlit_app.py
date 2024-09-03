@@ -164,6 +164,71 @@ if not st.session_state.logged_in:
 
 
 if st.session_state.logged_in:
+
+	# Sticky Top Navigation Bar with Logos
+	st.markdown(
+	    """
+	    <style>
+	    /* Top Navigation Bar */
+	    .topnav {
+	        background-color: #333; /* Background color of the bar */
+	        overflow: hidden;
+	        position: fixed; /* Fixed position to make it sticky */
+	        top: 0; /* Position at the top */
+	        width: 100%; /* Full width */
+	        z-index: 1000; /* Stay on top of all content */
+	        display: flex; /* Display as flex */
+	        align-items: center; /* Center the content vertically */
+	        padding: 10px; /* Padding for space inside the bar */
+	    }
+	
+	    /* Navigation Bar Links */
+	    .topnav a {
+	        float: left;
+	        display: block;
+	        color: #f2f2f2; /* Link color */
+	        text-align: center;
+	        padding: 14px 16px;
+	        text-decoration: none;
+	        font-size: 17px;
+	    }
+	
+	    /* Logo Styling */
+	    .topnav img {
+	        height: 50px; /* Adjust height as needed */
+	        margin-right: 15px; /* Space between logos and links */
+	    }
+	
+	    /* Page Content - Add Margin to Avoid Content Overlap */
+	    .content {
+	        margin-top: 80px; /* Margin to push down the content */
+	    }
+	    </style>
+	
+	    <!-- Top Navigation Bar HTML -->
+	    <div class="topnav">
+	        <img src="https://via.placeholder.com/100" alt="Logo 1"> <!-- Replace with your logo URL or path -->
+	        <img src="https://via.placeholder.com/100" alt="Logo 2"> <!-- Replace with your logo URL or path -->
+	        <a href="#">Home</a>
+	        <a href="#">About</a>
+	        <a href="#">Contact</a>
+	    </div>
+	
+	    <!-- Content Wrapper -->
+	    <div class="content">
+	    """,
+	    unsafe_allow_html=True
+	)
+	
+	# Ensure to close the content div at the end of your app
+	st.markdown("</div>", unsafe_allow_html=True)
+	
+	
+	
+	
+
+
+	
 	st.title("Chanakya")
 	
 	# Sidebar
