@@ -171,7 +171,7 @@ if st.session_state.logged_in:
 	urls = {"Arcadis": "https://airavt.ai"}
 	styles = {
 	    "nav": {
-	        "background-color": "royalblue",
+	        "background-color": "white",
 	        "justify-content": "left",
 	    },
 	    "img": {
