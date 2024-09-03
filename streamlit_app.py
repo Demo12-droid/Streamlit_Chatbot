@@ -165,67 +165,64 @@ if not st.session_state.logged_in:
 
 if st.session_state.logged_in:
 
-	# Sticky Top Navigation Bar with Logos
-	st.markdown(
-	    """
-	    <style>
-	    /* Top Navigation Bar */
-	    .topnav {
-	        background-color: #333; /* Background color of the bar */
-	        overflow: hidden;
-	        position: fixed; /* Fixed position to make it sticky */
-	        top: 0; /* Position at the top */
-	        width: 100%; /* Full width */
-	        z-index: 1000; /* Stay on top of all content */
-	        display: flex; /* Display as flex */
-	        align-items: center; /* Center the content vertically */
-	        padding: 10px; /* Padding for space inside the bar */
-	    }
+		
+	# Sticky Navigation Bar using Streamlit Components
+	def create_sticky_navbar():
+	    # Custom CSS for Sticky Navbar
+	    st.markdown(
+	        """
+	        <style>
+	        /* Sticky Navbar Container */
+	        .sticky-nav {
+	            background-color: #333; /* Background color */
+	            padding: 10px; /* Padding around content */
+	            position: -webkit-sticky; /* For Safari */
+	            position: sticky; /* Sticky position */
+	            top: 0; /* Stick to the top */
+	            z-index: 1000; /* Z-index to stay on top */
+	        }
 	
-	    /* Navigation Bar Links */
-	    .topnav a {
-	        float: left;
-	        display: block;
-	        color: #f2f2f2; /* Link color */
-	        text-align: center;
-	        padding: 14px 16px;
-	        text-decoration: none;
-	        font-size: 17px;
-	    }
+	        /* Navbar Content Styling */
+	        .sticky-nav div {
+	            display: flex;
+	            justify-content: space-between; /* Spacing between elements */
+	            align-items: center; /* Vertical center alignment */
+	        }
 	
-	    /* Logo Styling */
-	    .topnav img {
-	        height: 50px; /* Adjust height as needed */
-	        margin-right: 15px; /* Space between logos and links */
-	    }
+	        .sticky-nav img {
+	            height: 50px; /* Logo size */
+	        }
+	        </style>
+	        """,
+	        unsafe_allow_html=True
+	    )
 	
-	    /* Page Content - Add Margin to Avoid Content Overlap */
-	    .content {
-	        margin-top: 80px; /* Margin to push down the content */
-	    }
-	    </style>
-	
-	    <!-- Top Navigation Bar HTML -->
-	    <div class="topnav">
-	        <img src="https://via.placeholder.com/100" alt="Logo 1"> <!-- Replace with your logo URL or path -->
-	        <img src="https://via.placeholder.com/100" alt="Logo 2"> <!-- Replace with your logo URL or path -->
-	        <a href="#">Home</a>
-	        <a href="#">About</a>
-	        <a href="#">Contact</a>
-	    </div>
-	
-	    <!-- Content Wrapper -->
-	    <div class="content">
-	    """,
-	    unsafe_allow_html=True
-	)
-	
-	# Ensure to close the content div at the end of your app
-	st.markdown("</div>", unsafe_allow_html=True)
+	    # Streamlit Container for Navbar
+	    with st.container():
+	        st.markdown('<div class="sticky-nav">', unsafe_allow_html=True)
+	        
+	        # Creating Columns for Layout
+	        col1, col2, col3 = st.columns([1, 4, 1])
+	        
+	        # Column 1: Logo 1
+	        with col1:
+	            st.image("https://via.placeholder.com/100", width=80)  # Replace with your logo URL
+	        
+	        # Column 2: Centered Links
+	        with col2:
+	            st.write("<div style='text-align: center; color: white;'>Chanakya Dashboard</div>", unsafe_allow_html=True)
+	        
+	        # Column 3: Logo 2
+	        with col3:
+	            st.image("https://via.placeholder.com/100", width=80)  # Replace with your logo URL
+	        
+	        st.markdown('</div>', unsafe_allow_html=True)
 	
 	
-	
-	
+	# Call the function to create the sticky navigation bar
+	create_sticky_navbar()
+
+
 
 
 	
