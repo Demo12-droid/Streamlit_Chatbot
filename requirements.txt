@@ -2,3 +2,4 @@ streamlit_float
 streamlit_folium
 plotly
 branca==0.3.1
+streamlit-navigation-bar
