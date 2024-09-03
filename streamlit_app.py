@@ -183,7 +183,7 @@ if st.session_state.logged_in:
 	    },
 		"font-size": "24px",
 		"font-weight": "bold",
-	    },
+		},
 	    "active": {
 	        "background-color": "white",
 	        "color": "black",
