@@ -164,67 +164,6 @@ if not st.session_state.logged_in:
 
 
 if st.session_state.logged_in:
-
-		
-	# Sticky Navigation Bar using Streamlit Components
-	def create_sticky_navbar():
-	    # Custom CSS for Sticky Navbar
-	    st.markdown(
-	        """
-	        <style>
-	        /* Sticky Navbar Container */
-	        .sticky-nav {
-	            background-color: #333; /* Background color */
-	            padding: 10px; /* Padding around content */
-	            position: -webkit-sticky; /* For Safari */
-	            position: sticky; /* Sticky position */
-	            top: 0; /* Stick to the top */
-	            z-index: 1000; /* Z-index to stay on top */
-	        }
-	
-	        /* Navbar Content Styling */
-	        .sticky-nav div {
-	            display: flex;
-	            justify-content: space-between; /* Spacing between elements */
-	            align-items: center; /* Vertical center alignment */
-	        }
-	
-	        .sticky-nav img {
-	            height: 50px; /* Logo size */
-	        }
-	        </style>
-	        """,
-	        unsafe_allow_html=True
-	    )
-	
-	    # Streamlit Container for Navbar
-	    with st.container():
-	        st.markdown('<div class="sticky-nav">', unsafe_allow_html=True)
-	        
-	        # Creating Columns for Layout
-	        col1, col2, col3 = st.columns([1, 4, 1])
-	        
-	        # Column 1: Logo 1
-	        with col1:
-	            st.image("https://via.placeholder.com/100", width=80)  # Replace with your logo URL
-	        
-	        # Column 2: Centered Links
-	        with col2:
-	            st.write("<div style='text-align: center; color: white;'>Chanakya Dashboard</div>", unsafe_allow_html=True)
-	        
-	        # Column 3: Logo 2
-	        with col3:
-	            st.image("https://via.placeholder.com/100", width=80)  # Replace with your logo URL
-	        
-	        st.markdown('</div>', unsafe_allow_html=True)
-	
-	
-	# Call the function to create the sticky navigation bar
-	create_sticky_navbar()
-
-
-
-
 	
 	st.title("Chanakya")
 	
