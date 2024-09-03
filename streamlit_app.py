@@ -171,18 +171,35 @@ if st.session_state.logged_in:
 	urls = {"Arcadis": "https://airavt.ai"}
 	styles = {
 	    "nav": {
+	        "background-color": "white",
+	        "justify-content": "left",
+        	"padding": "0 20px",  # Add some padding on left and right
 	        "background-color": "rgb(123, 209, 146)",
 	    },
+	    "img": {
+	        "padding-right": "14px",
+		"max-height": "50px",  # Control the logo size to fit the nav bar
 	    "div": {
 	        "max-width": "32rem",
 	    },
 	    "span": {
+	        "color": "black",
+	        "padding": "14px",
+		"font-size": "24px",  # Increase font size to 24px
+        	"font-weight": "bold",  # Make text bold
+	    },
 	        "border-radius": "0.5rem",
 	        "color": "rgb(49, 51, 63)",
 	        "margin": "0 0.125rem",
 	        "padding": "0.4375rem 0.625rem",
 	    },
 	    "active": {
+	        "background-color": "white",
+	        "color": "black",  # Font color remains black for active item
+	        "font-weight": "bold",  # Make active text bold
+	        "font-size": "24px",  # Increase font size to 24px
+	        "padding": "14px",
+	    }
 	        "background-color": "rgba(255, 255, 255, 0.25)",
 	    },
 	    "hover": {
