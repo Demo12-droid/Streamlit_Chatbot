@@ -178,7 +178,7 @@ if st.session_state.logged_in:
 	        "padding-right": "14px",
 	    },
 	    "span": {
-	        "color": "white",
+	        "color": "black",
 	        "padding": "14px",
 	    },
 	    "active": {
