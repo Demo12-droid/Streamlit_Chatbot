@@ -180,11 +180,14 @@ if st.session_state.logged_in:
 	    "span": {
 	        "color": "black",
 	        "padding": "14px",
-	    },
+		"font-size": "24px",  # Increase font size to 24px
+        	"font-weight": "bold",  # Make text bold
+    	},
 	    "active": {
 	        "background-color": "white",
-	        "color": "black",
-	        "font-weight": "bold",
+	        "color": "black",  # Font color remains black for active item
+	        "font-weight": "bold",  # Make active text bold
+	        "font-size": "24px",  # Increase font size to 24px
 	        "padding": "14px",
 	    }
 	}
