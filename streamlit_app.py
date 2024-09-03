@@ -326,7 +326,7 @@ if st.session_state.logged_in:
 				plot_type= content.get('plot_type',None)
 				time_taken = content.get('time_taken')
 	    
-				with st.chat_message("assistant"):
+				with st.chat_message("assistant", avatar="orange_logo.svg"):		
 					if text_summary:
 						if text_summary != "The data queried is too large to summarize":
 							st.write(text_summary)
