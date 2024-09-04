@@ -334,5 +334,6 @@ if st.session_state.logged_in:
 					if plot:
 				# 		display_plot(plot,plot_type)
 						
-				# if time_taken:
+				if time_taken:
+					pass
 				# 	st.write(f"<b>Time taken: {time_taken:.4f} seconds</b>", unsafe_allow_html=True)
