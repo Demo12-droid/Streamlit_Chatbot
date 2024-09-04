@@ -332,7 +332,7 @@ if st.session_state.logged_in:
 						if text_summary != "The data queried is too large to summarize":
 							st.write(text_summary)
 					if plot:
-				# 		display_plot(plot,plot_type)
-				if time_taken:
-					pass
-				# 	st.write(f"<b>Time taken: {time_taken:.4f} seconds</b>", unsafe_allow_html=True)
+				 		display_plot(plot,plot_type)
+				# if time_taken:
+				#	# pass
+				# 	# st.write(f"<b>Time taken: {time_taken:.4f} seconds</b>", unsafe_allow_html=True)
