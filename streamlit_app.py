@@ -24,7 +24,7 @@ users_db = {
 }
 
 def get_response(user_input,show_plot,toggle_option,username,session_id):
-	url = 'https://filly-pumped-sole.ngrok-free.app/chat/chatbot/'
+	url = 'https://expert-pigeon-flexible.ngrok-free.app/chat/chatbot/'
 	headers = {'Content-Type': 'application/json'}
 	payload = {
 		'username': username,
@@ -47,7 +47,7 @@ def get_response(user_input,show_plot,toggle_option,username,session_id):
 		return None, None, None,None, time_taken
 
 def get_history(username,session_id):
-	url = 'https://filly-pumped-sole.ngrok-free.app/chat/session_info/'
+	url = 'https://expert-pigeon-flexible.ngrok-free.app/chat/session_info/'
 	headers = {'Content-Type': 'application/json'}
 	payload = {
 		'username': username,
@@ -63,7 +63,7 @@ def get_history(username,session_id):
 		return None
 
 def save_session_id(username,session_id):
-	url = 'https://filly-pumped-sole.ngrok-free.app/chat/save_session_id/'
+	url = 'https://expert-pigeon-flexible.ngrok-free.app/chat/save_session_id/'
 	headers = {'Content-Type': 'application/json'}
 	payload = {
 		'username': username,
@@ -85,7 +85,7 @@ def authenticate(username, password):
 
 # Function to retrieve session IDs
 def get_session_ids(username):
-	url = 'https://filly-pumped-sole.ngrok-free.app/chat/get_session_ids/'
+	url = 'https://expert-pigeon-flexible.ngrok-free.app/chat/get_session_ids/'
 	headers = {'Content-Type': 'application/json'}
 	payload = {
 		"username": username,
