@@ -23,6 +23,7 @@ users_db = {
 	"user6": {"password": "pass6"},
 	"user7": {"password": "pass7"},
 	"user8": {"password": "pass8"},
+	"user9": {"password": "pass9"},
 }
 
 def get_response(user_input,show_plot,toggle_option,username,session_id):
