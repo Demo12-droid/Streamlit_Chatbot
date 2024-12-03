@@ -26,7 +26,7 @@ users_db = {
 	"user9": {"password": "pass9"},
 	"airavt_admin": {"password": "Airavt"},
 	"npci_test": {"password": "npci_test"},
-	"npci_admin": {"password": "npci_admin"),
+	"npci_admin": {"password": "npci_admin"},
 }
 
 def get_response(user_input,show_plot,toggle_option,username,session_id):
