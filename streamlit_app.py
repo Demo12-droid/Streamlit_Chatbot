@@ -341,7 +341,7 @@ if st.session_state.logged_in:
 	    
 				with st.chat_message("assistant", avatar="orange_logo.svg"):		
 					if text_summary:
-						if plot and text_summary != "The data queried is too large to summarize!" and df !=None:
+						if text_summary != "The data queried is too large to summarize!" and df !=None:
 							# st.write(text_summary)
 							
 							table = pd.DataFrame(df)
