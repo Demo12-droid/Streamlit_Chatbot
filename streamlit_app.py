@@ -341,7 +341,7 @@ if st.session_state.logged_in:
 					if text_summary:
 						if plot and text_summary != "The data queried is too large to summarize!":
 							# st.write(text_summary)
-							table = pd.Dataframe(df)
+							table = pd.DataFrame(df)
 							if "tagid" in df.columns or "Tagid" in df.columns:
 								    st.dataframe(df)
 							else: 
