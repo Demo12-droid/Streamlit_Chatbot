@@ -348,7 +348,7 @@ if st.session_state.logged_in:
 							if "tagid" in table or "Tagid" in table:
 								    st.dataframe(table)
 							else: 
-								st.write(text_suummary)
+								st.write(text_summary)
 
 						else:
 							st.write(text_summary)
