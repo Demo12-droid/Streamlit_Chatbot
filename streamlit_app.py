@@ -49,9 +49,9 @@ def get_response(user_input,show_plot,toggle_option,username,session_id):
 	
 	if response.status_code == 200:
 	       data = response.json().get('data', {})
-	       return data.get('sql', 'No SQL query generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),data.get('plot_type', 'No plot generated'),time_taken
+	       return data.get('sql', 'No SQL query generated'),data.get('df', 'No df query generated'), data.get('text_summary', 'No summary generated'), data.get('plot', 'No plot generated'),data.get('plot_type', 'No plot generated'),time_taken
 	else:
-		return None, None, None,None, time_taken
+		return None, None,None,None,None, time_taken
 
 def get_history(username,session_id):
 	url = 'https://diverse-chamois-internally.ngrok-free.app/chat/session_info/'
@@ -339,8 +339,17 @@ if st.session_state.logged_in:
 	    
 				with st.chat_message("assistant", avatar="orange_logo.svg"):		
 					if text_summary:
-						if text_summary != "The data queried is too large to summarize":
-							st.write(text_summary)
+						if plot and text_summary != "The data queried is too large to summarize!":
+							# st.write(text_summary)
+							table = pd.Dataframe(df)
+							if "tagid" in df.columns or "Tagid" in df.columns:
+								    st.dataframe(df)
+							else: 
+								st.write(text_suummary)
+
+					else:
+						st.write(text_summary)
+							
 					if plot:
 				 		display_plot(plot,plot_type)
 				# if time_taken:
