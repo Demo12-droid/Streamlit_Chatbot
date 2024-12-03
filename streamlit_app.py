@@ -316,6 +316,7 @@ if st.session_state.logged_in:
 		    "role": "assistant",
 		    "content": {
 			"sql": sql,
+			"df":df,
 			"text_summary": text_summary,
 			"plot": plot,
 			"plot_type":plot_type,
@@ -332,6 +333,7 @@ if st.session_state.logged_in:
 					st.write(content)
 			elif role == 'assistant':
 				sql_query = content.get('sql', None)
+				df= content.get("df",None)
 				text_summary = content.get('text_summary', None)
 				plot = content.get('plot', None)
 				plot_type= content.get('plot_type',None)
@@ -339,16 +341,17 @@ if st.session_state.logged_in:
 	    
 				with st.chat_message("assistant", avatar="orange_logo.svg"):		
 					if text_summary:
-						if plot and text_summary != "The data queried is too large to summarize!":
+						if plot and text_summary != "The data queried is too large to summarize!" and df !=None:
 							# st.write(text_summary)
+							
 							table = pd.DataFrame(df)
 							if "tagid" in df.columns or "Tagid" in df.columns:
 								    st.dataframe(df)
 							else: 
 								st.write(text_suummary)
 
-					else:
-						st.write(text_summary)
+						else:
+							st.write(text_summary)
 							
 					if plot:
 				 		display_plot(plot,plot_type)
