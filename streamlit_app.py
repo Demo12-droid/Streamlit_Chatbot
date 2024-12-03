@@ -310,7 +310,7 @@ if st.session_state.logged_in:
 
 	if user_input:
 		st.session_state.messages.append({"role": "user", "content": user_input})
-		sql, text_summary, plot,plot_type, time_taken = get_response(user_input,show_plot,toggle_option,st.session_state.username,st.session_state.session_id)
+		sql, df,text_summary,plot,plot_type, time_taken = get_response(user_input,show_plot,toggle_option,st.session_state.username,st.session_state.session_id)
 		
 		st.session_state.messages.append({
 		    "role": "assistant",
