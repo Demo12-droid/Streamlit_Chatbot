@@ -257,7 +257,8 @@ if st.session_state.logged_in:
 
 
 	st.sidebar.header("Database options")
-	toggle_option = st.sidebar.selectbox('Choose a Database:',['fasttag_data'])
+	toggle_option = st.sidebar.selectbox('Choose a Database:',['npci_od_data'])
+	# toggle_option = st.sidebar.selectbox('Choose a Database:',['fasttag_data'])
 	# toggle_option = st.sidebar.selectbox('Choose a Database:',['congestion', 'toll_plaza_data'])
 	
 	st.sidebar.header("Display Options")
